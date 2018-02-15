@@ -1,0 +1,12 @@
+{
+  "name": "cryptick",
+  "version": "1.0.0",
+  "description": "A real-time cryptocurrency pricetracker",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm run start --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
