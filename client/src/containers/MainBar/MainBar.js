@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import QuoteDisplay from "../../components/QuoteDisplay/QuoteDisplay";
 import FaAngleRight from "react-icons/lib/fa/angle-right";
@@ -34,16 +34,62 @@ const DropdownButton = styled.button`
   }
 `;
 //#endregion
-
-const MainBar = ({ dropdownOpen, handleClick }) => {
-  return (
-    <Wrapper>
-      <DropdownButton dropdownOpen={dropdownOpen} onClick={handleClick}>
-        <FaAngleRight />
-      </DropdownButton>
-      <QuoteDisplay />
-    </Wrapper>
-  );
+const socket = new WebSocket("wss://ws-feed.gdax.com");
+const heartbeat = {
+  type: "subscribe",
+  product_ids: ["BTC-USD"],
+  channels: ["heartbeat", "ticker"]
 };
+
+class MainBar extends Component {
+  state = {
+    data: null
+  };
+
+  componentDidMount() {
+    socket.onopen = () => {
+      socket.send(JSON.stringify(heartbeat));
+    };
+    this.wsSetup();
+  }
+
+  componentWillUnmount() {
+    socket.close();
+    socket.onclose = msg => {
+      console.log(msg);
+    };
+  }
+
+  wsSetup = () => {
+    socket.onmessage = msg => {
+      const data = JSON.parse(msg.data);
+      if (data.type === "ticker") {
+        console.log(data);
+        this.setState({ data });
+      }
+      if (data.type === "error") {
+        console.log("ERROR: ", data.message);
+      }
+    };
+
+    socket.onerror = err => {
+      console.log("Error: ", err);
+    };
+  };
+
+  render() {
+    return (
+      <Wrapper>
+        <DropdownButton
+          dropdownOpen={this.props.dropdownOpen}
+          onClick={this.props.handleClick}
+        >
+          <FaAngleRight />
+        </DropdownButton>
+        <QuoteDisplay data={this.state.data} />
+      </Wrapper>
+    );
+  }
+}
 
 export default MainBar;
