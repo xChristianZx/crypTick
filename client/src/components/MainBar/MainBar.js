@@ -26,9 +26,12 @@ const MainBar = () => {
     height: 2rem;
     width: 2rem;
     font-size: 1.5rem;
-    background-color: grey;
+    background-color: inherit;
     color: white;
     border-radius: 50%;
+    /* & svg {
+      transform: rotate(90deg);
+    } */
   `;
   return (
     <Wrapper>
