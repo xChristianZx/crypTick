@@ -29,11 +29,12 @@ const DropdownButton = styled.button`
   background-color: inherit;
   color: white;
   border-radius: 50%;
-  & svg {
+  & svg {    
     transform: ${props => (props.dropdownOpen ? "rotate(90deg)" : -1)};
   }
 `;
 //#endregion
+
 const socket = new WebSocket("wss://ws-feed.gdax.com");
 const heartbeat = {
   type: "subscribe",
@@ -55,9 +56,6 @@ class MainBar extends Component {
 
   componentWillUnmount() {
     socket.close();
-    socket.onclose = msg => {
-      console.log(msg);
-    };
   }
 
   wsSetup = () => {
@@ -75,6 +73,14 @@ class MainBar extends Component {
     socket.onerror = err => {
       console.log("Error: ", err);
     };
+
+    socket.onclose = msg => {
+      console.log(msg);
+    };
+
+    window.addEventListener("beforeunload", () => {
+      socket.close();
+    });
   };
 
   render() {
@@ -87,6 +93,7 @@ class MainBar extends Component {
           <FaAngleRight />
         </DropdownButton>
         <QuoteDisplay data={this.state.data} />
+        <button onClick={() => socket.close()}>Close</button>
       </Wrapper>
     );
   }

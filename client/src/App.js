@@ -19,9 +19,7 @@ class App extends Component {
           dropdownOpen={this.state.dropdownOpen}
           handleClick={this.handleClick}
         />
-        {this.state.dropdownOpen ? (
-          <Accordion display={this.state.dropdownOpen} />
-        ) : null}
+        <Accordion display={this.state.dropdownOpen} />
       </div>
     );
   }
