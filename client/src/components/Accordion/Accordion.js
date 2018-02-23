@@ -22,7 +22,7 @@ const Wrapper = styled.section`
 
 const Accordion = props => {
   return (
-    <Wrapper display={props.display}>
+    <Wrapper display={props.display ? 1 : 0}>
       <h1>Hello There</h1>
     </Wrapper>
   );
