@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TransitionDisplay from "./TransitionDisplay/TransitionDisplay";
+import Loading from "./Loading";
 
 const QuoteBox = styled.div`
   display: flex;
@@ -13,22 +14,11 @@ const QuoteBox = styled.div`
   height: 100%;
 `;
 
-const QuoteBoxItem = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  /* border: 1px solid blue; */
-`;
-
 const QuoteDisplay = ({ data }) => {
   if (!data) {
     return (
       <QuoteBox loading>
-        <QuoteBoxItem>
-          <h2>Loading...</h2>
-        </QuoteBoxItem>
+        <Loading />
       </QuoteBox>
     );
   }
