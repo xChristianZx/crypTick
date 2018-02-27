@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Arrow from "react-icons/lib/md/arrow-upward";
 
 //#region styled-components
@@ -39,18 +39,42 @@ const SpotPriceWrapper = QuoteBoxItem.extend`
     font-weight: 300;
   }
 `;
-
-const SpotPrice = styled.h1`
+const h1Default = styled.h1`
   color: white;
   margin: 0.25rem;
+`;
+
+const fadeOutGreen = keyframes`
+  0% {    
+    background-color: green;
+    opacity: 100%
+  }
+  100% {
+    background-color: inherit;
+    opacity: 0%;
+  }
+`;
+const fadeOutRed = keyframes`
+  0% {    
+    background-color: red;
+    opacity: 100%
+  }
+  100% {
+    background-color: inherit;
+    opacity: 0%;
+  }
+`;
+const SpotPrice = h1Default.extend`  
+  animation: ${props =>
+    props.side === "buy"
+      ? `${fadeOutGreen} 2s linear`
+      : `${fadeOutRed} 2s linear`};
   /* border: 1px solid red; */
 `;
-
-const PercentageChange = SpotPrice.extend`
+const PercentageChange = h1Default.extend`
   color: ${props => (props.change > 0 ? "limegreen" : "red")};
 `;
-
-const Volume = SpotPrice.extend``;
+const Volume = h1Default.extend``;
 
 const Label = styled.label`
   color: gray;
@@ -72,6 +96,8 @@ const numPadding = num => {
 };
 //#endregion
 
+/****  Component *****/
+
 const TransitionDisplay = ({ data }) => {
   const { product_id, price, side, volume_24h, open_24h } = data;
   const change24H = numPadding((price - open_24h) / open_24h * 100);
@@ -81,13 +107,14 @@ const TransitionDisplay = ({ data }) => {
       <ProductName>{product_id}</ProductName>
       <SpotPriceWrapper side={side}>
         <QuoteBoxItem>
-          <SpotPrice>{currencyFormatting(price)}</SpotPrice>
+          <SpotPrice side={side}>{currencyFormatting(price)}</SpotPrice>
           <Label>Last Trade Price</Label>
         </QuoteBoxItem>
         <Arrow className="side-indicator" />
       </SpotPriceWrapper>
       <QuoteBoxItem>
         <PercentageChange change={change24H}>
+          {change24H < 0 ? "- " : "+ "}
           {change24H}
           {" %"}
         </PercentageChange>
