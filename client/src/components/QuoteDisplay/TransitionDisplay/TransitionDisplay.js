@@ -42,17 +42,18 @@ const SpotPriceWrapper = QuoteBoxItem.extend`
 
 const SpotPrice = styled.h1`
   color: white;
+  margin: 0.25rem;
   /* border: 1px solid red; */
 `;
 
-const PercentageChange = styled.h1`
-  color: ${props => (props.change > 0 ? "chartreuse" : "red")};
+const PercentageChange = SpotPrice.extend`
+  color: ${props => (props.change > 0 ? "chartreuse" : "red")};  
 `;
 
-const Volume = styled.h1``;
+const Volume = SpotPrice.extend``;
 
 const Label = styled.label`
-  color: black;
+  color: gray;
   font-size: 0.75rem;
   font-weight: 400;
 `;
@@ -72,15 +73,12 @@ const numPadding = num => {
 //#endregion
 
 const TransitionDisplay = ({ data }) => {
-  const product = data.product_id;
-  const price = data.price;
-  const side = data.side;
+  const { product_id, price, side, volume_24h } = data;
   const change = 0.02;
-  const volume = data.volume_24h;
 
   return (
     <Wrapper>
-      <ProductName>{product}</ProductName>
+      <ProductName>{product_id}</ProductName>
       <SpotPriceWrapper side={side}>
         <QuoteBoxItem>
           <SpotPrice>{currencyFormatting(price)}</SpotPrice>
@@ -96,7 +94,7 @@ const TransitionDisplay = ({ data }) => {
         <Label>24hr Change</Label>
       </QuoteBoxItem>
       <QuoteBoxItem>
-        <Volume>{numPadding(volume)}</Volume>
+        <Volume>{numPadding(volume_24h)}</Volume>
         <Label>24hr Vol</Label>
       </QuoteBoxItem>
     </Wrapper>

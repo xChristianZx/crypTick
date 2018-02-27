@@ -2,21 +2,31 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import QuoteDisplay from "../../components/QuoteDisplay/QuoteDisplay";
 import FaAngleRight from "react-icons/lib/fa/angle-right";
+import Accordion from "../../components/Accordion/Accordion";
 
 //#region Styled Components
-const Wrapper = styled.section`
+const MainBarWrapper = styled.section`
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #353c3f;
+  border-radius: 5px;
+  color: white;
+  width: 60vw;
+`;
+
+const Wrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  width: 60vw;
-  height: 7vh;
-  padding: 1rem;
-  background-color: grey;
-  border: 2px solid rgb(84, 84, 84);
-  border-radius: 5px;
-  box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.5);
-  color: white;
+  height: 8vh;
+  width: 100%;
+  /* padding: 1rem 0; */
+  /* border: 2px solid green; */
+  /* box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.5); */
 `;
 const DropdownButton = styled.button`
   display: flex;
@@ -29,7 +39,10 @@ const DropdownButton = styled.button`
   background-color: inherit;
   color: white;
   border-radius: 50%;
-  & svg {    
+  &:focus {
+    outline: none;
+  }
+  & svg {
     transform: ${props => (props.dropdownOpen ? "rotate(90deg)" : -1)};
   }
 `;
@@ -85,16 +98,19 @@ class MainBar extends Component {
 
   render() {
     return (
-      <Wrapper>
-        <DropdownButton
-          dropdownOpen={this.props.dropdownOpen}
-          onClick={this.props.handleClick}
-        >
-          <FaAngleRight />
-        </DropdownButton>
-        <QuoteDisplay data={this.state.data} />
-        <button onClick={() => socket.close()}>Close</button>
-      </Wrapper>
+      <MainBarWrapper>
+        <Wrapper>
+          <DropdownButton
+            dropdownOpen={this.props.dropdownOpen}
+            onClick={this.props.handleClick}
+          >
+            <FaAngleRight />
+          </DropdownButton>
+          <QuoteDisplay data={this.state.data} />
+          <button onClick={() => socket.close()}>Close</button>
+        </Wrapper>
+        <Accordion display={this.props.dropdownOpen} />
+      </MainBarWrapper>
     );
   }
 }

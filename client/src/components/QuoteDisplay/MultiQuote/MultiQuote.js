@@ -11,12 +11,9 @@ const Wrapper = styled.div`
 `;
 
 const MultiQuote = ({ data }) => {
-  const product = data.product_id;
-  const price = data.price;
-  const side = data.side;
+  const { product_id, price, side, volume_24h } = data;
   const change = 0.02;
-  const volume = data.volume_24h;
-  
+
   return <Wrapper>Multiple quotes here</Wrapper>;
 };
 

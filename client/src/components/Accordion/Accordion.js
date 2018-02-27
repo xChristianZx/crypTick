@@ -3,21 +3,19 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   display: flex;
-  opacity: ${props => (props.display ? 1 : 0)};
-  transition: opacity 0.5s ease-in, height 0.25s linear;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  width: 60vw;
+  width: 100%;
   height: ${props => (props.display ? "40vh" : "0")};
-  padding: 1rem;
-  background-color: grey;
-  border: 1px solid rgb(84, 84, 84);
-  border-top: none;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.5);
+  opacity: ${props => (props.display ? 1 : 0)};
+  transition: opacity 0.5s ease-in, height 0.25s linear;
+  padding: 0;
+  background-color: inherit;
   color: white;
+  /* border: 1px solid red;   */
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
 `;
 
 const Accordion = props => {

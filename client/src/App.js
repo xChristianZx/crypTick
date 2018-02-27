@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import MainBar from "../src/containers/MainBar/MainBar";
-import Accordion from "../src/components/Accordion/Accordion";
 
 class App extends Component {
   state = {
@@ -19,7 +18,6 @@ class App extends Component {
           dropdownOpen={this.state.dropdownOpen}
           handleClick={this.handleClick}
         />
-        <Accordion display={this.state.dropdownOpen} />
       </div>
     );
   }
