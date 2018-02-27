@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   /* border: 1px solid orange; */
+  margin: 0.5rem;
 `;
 
 const QuoteBoxItem = styled.div`
@@ -42,6 +43,7 @@ const SpotPriceWrapper = QuoteBoxItem.extend`
 const h1Default = styled.h1`
   color: white;
   margin: 0.25rem;
+  padding: 0.25rem;
 `;
 
 const fadeOutGreen = keyframes`
@@ -95,8 +97,6 @@ const numPadding = num => {
   return Number.parseFloat(num).toFixed(2);
 };
 //#endregion
-
-/****  Component *****/
 
 const TransitionDisplay = ({ data }) => {
   const { product_id, price, side, volume_24h, open_24h } = data;

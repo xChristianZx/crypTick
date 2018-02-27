@@ -25,8 +25,8 @@ const Wrapper = styled.div`
   align-items: center;
   height: 8vh;
   width: 100%;
+  margin: 0.5rem;
   /* border: 2px solid green; */
-  /* box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.5); */
 `;
 const DropdownButton = styled.button`
   display: flex;
@@ -94,7 +94,7 @@ class MainBar extends Component {
     window.addEventListener("beforeunload", () => {
       socket.close();
     });
-  };  
+  };
 
   render() {
     return (

@@ -10,7 +10,7 @@ const QuoteBox = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  padding: 0.5rem 0;
+  margin: 0.5rem;
   /* border: 1px solid purple; */
 `;
 

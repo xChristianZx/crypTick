@@ -14,6 +14,7 @@ const Wrapper = styled.section`
   background-color: inherit;
   color: white;
   /* border: 1px solid red;   */
+  border-top: 1px solid rgba(64, 72, 76, 0.75);
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
 `;
