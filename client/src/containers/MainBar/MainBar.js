@@ -10,11 +10,12 @@ const MainBarWrapper = styled.section`
   flex-flow: column nowrap;
   height: 100%;
   align-items: center;
+  width: 60vw;
   padding: 0.5rem;
-  background-color: #353c3f;
+  /* Same as #353C3F */
+  background-color: rgba(53, 60, 63, 1);
   border-radius: 5px;
   color: white;
-  width: 60vw;
 `;
 
 const Wrapper = styled.div`
@@ -24,7 +25,6 @@ const Wrapper = styled.div`
   align-items: center;
   height: 8vh;
   width: 100%;
-  /* padding: 1rem 0; */
   /* border: 2px solid green; */
   /* box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.5); */
 `;
@@ -94,7 +94,7 @@ class MainBar extends Component {
     window.addEventListener("beforeunload", () => {
       socket.close();
     });
-  };
+  };  
 
   render() {
     return (

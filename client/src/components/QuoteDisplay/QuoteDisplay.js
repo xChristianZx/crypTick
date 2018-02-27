@@ -8,10 +8,10 @@ const QuoteBox = styled.div`
   flex-flow: row nowrap;
   justify-content: ${props => (props.loading ? "center" : "space-between")};
   align-items: center;
-  padding: 0.5rem 0;
-  width: 100%;
-  /* border: 1px solid purple; */
   height: 100%;
+  width: 100%;
+  padding: 0.5rem 0;
+  /* border: 1px solid purple; */
 `;
 
 const QuoteDisplay = ({ data }) => {

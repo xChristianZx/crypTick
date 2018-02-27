@@ -6,11 +6,11 @@ const Wrapper = styled.section`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   height: ${props => (props.display ? "40vh" : "0")};
+  width: 100%;
+  padding: 0;
   opacity: ${props => (props.display ? 1 : 0)};
   transition: opacity 0.5s ease-in, height 0.25s linear;
-  padding: 0;
   background-color: inherit;
   color: white;
   /* border: 1px solid red;   */

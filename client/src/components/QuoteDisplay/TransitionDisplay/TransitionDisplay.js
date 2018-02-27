@@ -8,9 +8,9 @@ const Wrapper = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
   width: 100%;
   /* border: 1px solid orange; */
-  height: 100%;
 `;
 
 const QuoteBoxItem = styled.div`
@@ -33,10 +33,10 @@ const SpotPriceWrapper = QuoteBoxItem.extend`
   justify-content: space-evenly;
   width: 12vw;
   & svg.side-indicator {
-    font-size: 25px;
-    font-weight: 300;
     color: ${props => (props.side === "buy" ? "limegreen" : "red")};
     transform: ${props => (props.side === "sell" ? "rotate(180deg)" : -1)};
+    font-size: 25px;
+    font-weight: 300;
   }
 `;
 
@@ -47,7 +47,7 @@ const SpotPrice = styled.h1`
 `;
 
 const PercentageChange = SpotPrice.extend`
-  color: ${props => (props.change > 0 ? "chartreuse" : "red")};  
+  color: ${props => (props.change > 0 ? "limegreen" : "red")};
 `;
 
 const Volume = SpotPrice.extend``;
@@ -73,8 +73,8 @@ const numPadding = num => {
 //#endregion
 
 const TransitionDisplay = ({ data }) => {
-  const { product_id, price, side, volume_24h } = data;
-  const change = 0.02;
+  const { product_id, price, side, volume_24h, open_24h } = data;
+  const change24H = numPadding((price - open_24h) / open_24h * 100);
 
   return (
     <Wrapper>
@@ -87,8 +87,8 @@ const TransitionDisplay = ({ data }) => {
         <Arrow className="side-indicator" />
       </SpotPriceWrapper>
       <QuoteBoxItem>
-        <PercentageChange change={change}>
-          {change}
+        <PercentageChange change={change24H}>
+          {change24H}
           {" %"}
         </PercentageChange>
         <Label>24hr Change</Label>
