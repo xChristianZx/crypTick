@@ -19,14 +19,16 @@ const Th = styled.th`
   width: 40%;
 `;
 const Td = styled.td`
-  /* border-bottom: 1px solid gray; */
-  /* border-left: 1px solid gray; */
   padding-left: 0.5rem;
   width: 60%;
 `;
 //endregion
 
 const Stats = props => {
+  if (!props.display) {
+    return null;
+  }
+
   const { high_24h, low_24h, open_24h, volume_30d } = props.data;
   const marketCap = props.btcMarketCap;
   return (
@@ -34,7 +36,7 @@ const Stats = props => {
       <TBody>
         <Tr>
           <Th>Market Cap</Th>
-          <Td>${marketCapFormatting(marketCap)}</Td>
+          <Td>{marketCapFormatting(marketCap)}</Td>
         </Tr>
         <Tr>
           <Th>Open (24h)</Th>

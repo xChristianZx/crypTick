@@ -124,7 +124,7 @@ class MainBar extends Component {
           <button onClick={() => socket.close()}>Close</button>
         </Wrapper>
         <Accordion
-          display={true}
+          display={this.props.dropdownOpen}
           data={this.state.data}
           btcMarketCap={this.state.btcMarketCap}
         />

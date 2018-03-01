@@ -28,7 +28,7 @@ const ChartHolder = styled.div`
 
 const Accordion = props => {
   if (!props.data) {
-    return <h2>Loading... </h2>;
+    return <h2>Loading...</h2>;
   }
 
   return (
