@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { numPadding, currencyFormatting } from "../../../utils/formatting";
+import { numPadding, marketCapFormatting } from "../../../utils/formatting";
 //region StyledComponents
 const Table = styled.table`
   /* border: 1px solid blue; */
@@ -34,7 +34,7 @@ const Stats = props => {
       <TBody>
         <Tr>
           <Th>Market Cap</Th>
-          <Td>{currencyFormatting(marketCap)}</Td>
+          <Td>${marketCapFormatting(marketCap)}</Td>
         </Tr>
         <Tr>
           <Th>Open (24h)</Th>

@@ -10,3 +10,12 @@ export const currencyFormatting = num => {
   });
   return usdFormatting.format(num);
 };
+
+export const marketCapFormatting = num => {
+  const usdFormatting = new Intl.NumberFormat("en-US", {
+    style: "decimal",
+    currency: "USD",
+    minimumFractionDigits: 0
+  });
+  return usdFormatting.format(num);
+};
