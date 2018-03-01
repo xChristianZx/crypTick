@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import Arrow from "react-icons/lib/md/arrow-upward";
+import { currencyFormatting, numPadding } from "../../../utils/formatting";
 
 //#region styled-components
 const Wrapper = styled.div`
@@ -83,24 +84,11 @@ const Label = styled.label`
   font-size: 0.75rem;
   font-weight: 400;
 `;
-
-const currencyFormatting = num => {
-  const usdFormatting = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2
-  });
-  return usdFormatting.format(num);
-};
-
-const numPadding = num => {
-  return Number.parseFloat(num).toFixed(2);
-};
 //#endregion
 
 const TransitionDisplay = ({ data }) => {
   const { product_id, price, side, volume_24h, open_24h } = data;
-  const change24H = numPadding((price - open_24h) / open_24h * 100);
+  const percentageChange24H = numPadding((price - open_24h) / open_24h * 100);
 
   return (
     <Wrapper>
@@ -113,9 +101,9 @@ const TransitionDisplay = ({ data }) => {
         <Arrow className="side-indicator" />
       </SpotPriceWrapper>
       <QuoteBoxItem>
-        <PercentageChange change={change24H}>
-          {change24H < 0 ? "- " : "+ "}
-          {change24H}
+        <PercentageChange change={percentageChange24H}>
+          {percentageChange24H < 0 ? "- " : "+ "}
+          {percentageChange24H}
           {" %"}
         </PercentageChange>
         <Label>24hr Change</Label>

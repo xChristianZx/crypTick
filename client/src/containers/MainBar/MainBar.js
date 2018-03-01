@@ -3,6 +3,7 @@ import styled from "styled-components";
 import QuoteDisplay from "../../components/QuoteDisplay/QuoteDisplay";
 import FaAngleRight from "react-icons/lib/fa/angle-right";
 import Accordion from "../../components/Accordion/Accordion";
+import Axios from "axios";
 
 //#region Styled Components
 const MainBarWrapper = styled.section`
@@ -57,7 +58,8 @@ const heartbeat = {
 
 class MainBar extends Component {
   state = {
-    data: null
+    data: null,
+    btcMarketCap: null
   };
 
   componentDidMount() {
@@ -65,6 +67,7 @@ class MainBar extends Component {
       socket.send(JSON.stringify(heartbeat));
     };
     this.wsSetup();
+    this.fetchMarketCap();
   }
 
   componentWillUnmount() {
@@ -96,6 +99,17 @@ class MainBar extends Component {
     });
   };
 
+  fetchMarketCap = () => {
+    const baseUrl = "https://api.coinmarketcap.com/v1/ticker/bitcoin/";
+
+    Axios.get(baseUrl)
+      .then(res => {
+        console.log("fetchMarketCap", res);
+        this.setState({ btcMarketCap: res.data[0].market_cap_usd });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <MainBarWrapper>
@@ -109,7 +123,11 @@ class MainBar extends Component {
           <QuoteDisplay data={this.state.data} />
           <button onClick={() => socket.close()}>Close</button>
         </Wrapper>
-        <Accordion display={this.props.dropdownOpen} />
+        <Accordion
+          display={true}
+          data={this.state.data}
+          btcMarketCap={this.state.btcMarketCap}
+        />
       </MainBarWrapper>
     );
   }
