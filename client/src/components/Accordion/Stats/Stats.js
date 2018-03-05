@@ -5,7 +5,7 @@ import { numPadding, marketCapFormatting } from "../../../utils/formatting";
 const Table = styled.table`
   /* border: 1px solid blue; */
   height: 50%;
-  width: 30%;
+  width: 20%;
   margin: 0.5rem;
 `;
 const TBody = styled.tbody``;
@@ -25,12 +25,12 @@ const Td = styled.td`
 //endregion
 
 const Stats = props => {
+  const { high_24h, low_24h, open_24h, volume_30d } = props.data;
+  const marketCap = props.btcMarketCap;
+
   if (!props.display) {
     return null;
   }
-
-  const { high_24h, low_24h, open_24h, volume_30d } = props.data;
-  const marketCap = props.btcMarketCap;
   return (
     <Table>
       <TBody>

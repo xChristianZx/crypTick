@@ -102,7 +102,7 @@ const TransitionDisplay = ({ data }) => {
       </SpotPriceWrapper>
       <QuoteBoxItem>
         <PercentageChange change={percentageChange24H}>
-          {percentageChange24H < 0 ? "- " : "+ "}
+          {percentageChange24H > 0 ? "+" : null}
           {percentageChange24H}
           {" %"}
         </PercentageChange>

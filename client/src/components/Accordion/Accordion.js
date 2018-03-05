@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import Stats from "./Stats/Stats";
+import Charts from "./Charts/Charts";
 
 const Wrapper = styled.section`
-  /* border: 1px solid red; */
+  border: 1px solid red;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   height: ${props => (props.display ? "40vh" : "0")};
   width: 100%;
@@ -19,12 +20,6 @@ const Wrapper = styled.section`
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
 `;
-const ChartHolder = styled.div`
-  /* border: 1px solid green; */
-  height: 50%;
-  width: 70%;
-  margin: 0.5rem;
-`;
 
 const Accordion = props => {
   if (!props.data) {
@@ -34,7 +29,7 @@ const Accordion = props => {
   return (
     <Wrapper display={props.display ? 1 : 0}>
       <Stats {...props} />
-      <ChartHolder children={<h1>chart here</h1>} />
+      <Charts {...props} />
     </Wrapper>
   );
 };

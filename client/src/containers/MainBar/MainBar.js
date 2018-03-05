@@ -59,7 +59,8 @@ const heartbeat = {
 class MainBar extends Component {
   state = {
     data: null,
-    btcMarketCap: null
+    btcMarketCap: null,
+    currentChartData: []
   };
 
   componentDidMount() {
@@ -68,6 +69,7 @@ class MainBar extends Component {
     };
     this.wsSetup();
     this.fetchMarketCap();
+    this.fetchHistoricalData();
   }
 
   componentWillUnmount() {
@@ -110,6 +112,21 @@ class MainBar extends Component {
       .catch(err => console.log(err));
   };
 
+  fetchHistoricalData = () => {
+    const baseUrl =
+      "https://api.gdax.com/products/BTC-USD/candles?granularity=3600";
+    // const params = {
+    //   granularity: 86400
+    // };
+
+    Axios.get(baseUrl)
+      .then(res => {
+        console.log("Hist Data:", res.data);
+        this.setState({ currentChartData: res.data });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <MainBarWrapper>
@@ -127,6 +144,7 @@ class MainBar extends Component {
           display={this.props.dropdownOpen}
           data={this.state.data}
           btcMarketCap={this.state.btcMarketCap}
+          chartData={this.state.currentChartData}
         />
       </MainBarWrapper>
     );
