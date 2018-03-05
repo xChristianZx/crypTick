@@ -3,7 +3,7 @@ import HighCharts from "react-highcharts/ReactHighstock.src";
 import styled from "styled-components";
 
 const ChartContainer = styled.div`
-  border: 1px solid green;
+  /* border: 1px solid green; */
   height: 90%;
   width: 80%;
   margin: 0.5rem;
@@ -22,10 +22,12 @@ const Charts = props => {
     [time,low, high, open, close, volume]
     *NOTE* GDAX returns time in Epoch Unix
 */
+  //90 days
+  const test = chartData.slice(0, 89);
 
-  const ohlc = chartData
+  const ohlc = test
     .map(item => {
-      return [item[0], item[3], item[2], item[1], item[4]];
+      return [item[0] * 1000, item[3], item[2], item[1], item[4]];
     })
     .reverse();
 
@@ -37,14 +39,28 @@ const Charts = props => {
 
   var config = {
     rangeSelector: {
+      verticalAlign: "bottom",
+      enabled: false,
       selected: 1
     },
     chart: {
       backgroundColor: "dimgray",
-      height: "35%"
+      height: "40%"
     },
     title: {
-      text: product_id
+      text: null
+    },
+    navigator: {
+      enabled: false
+    },
+    scrollbar: {
+      enabled: false
+    },
+    plotOptions: {
+      candlestick: {
+        upColor: "limegreen",
+        color: "red"
+      }
     },
     series: [
       {

@@ -4,7 +4,7 @@ import Stats from "./Stats/Stats";
 import Charts from "./Charts/Charts";
 
 const Wrapper = styled.section`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;

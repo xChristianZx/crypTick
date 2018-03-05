@@ -114,7 +114,7 @@ class MainBar extends Component {
 
   fetchHistoricalData = () => {
     const baseUrl =
-      "https://api.gdax.com/products/BTC-USD/candles?granularity=3600";
+      "https://api.gdax.com/products/BTC-USD/candles?granularity=86400";
     // const params = {
     //   granularity: 86400
     // };
