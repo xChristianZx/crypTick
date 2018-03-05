@@ -52,15 +52,18 @@ const DropdownButton = styled.button`
 const socket = new WebSocket("wss://ws-feed.gdax.com");
 const heartbeat = {
   type: "subscribe",
-  product_ids: ["BTC-USD"],
+  product_ids: ["BTC-USD", "ETH-USD", "LTC-USD"],
   channels: ["heartbeat", "ticker"]
 };
 
 class MainBar extends Component {
   state = {
-    data: null,
+    btcWsData: null,
+    ethWsData: null,
+    ltcWsData: null,
     btcMarketCap: null,
-    currentChartData: []
+    currentChartData: [],
+    currentTicker: 0
   };
 
   componentDidMount() {
@@ -78,10 +81,18 @@ class MainBar extends Component {
 
   wsSetup = () => {
     socket.onmessage = msg => {
-      const data = JSON.parse(msg.data);
+      const data = JSON.parse(msg.data);      
       if (data.type === "ticker") {
-        console.log(data);
-        this.setState({ data });
+        if (data.product_id === "BTC-USD") {
+          this.setState({ btcWsData: data });
+          // console.log("BTC-USD", data);
+        } else if (data.product_id === "ETH-USD") {
+          this.setState({ ethWsData: data });
+          // console.log("ETH-USD", data);
+        } else {
+          this.setState({ ltcWsData: data });
+          // console.log("LTC-USD", data);
+        }
       }
       if (data.type === "error") {
         console.log("ERROR: ", data.message);
@@ -137,12 +148,17 @@ class MainBar extends Component {
           >
             <FaAngleRight />
           </DropdownButton>
-          <QuoteDisplay data={this.state.data} />
+          <QuoteDisplay
+            currentTicker={this.state.currentTicker}
+            btcData={this.state.btcWsData}
+            ethData={this.state.ethWsData}
+            ltcData={this.state.ltcWsData}
+          />
           <button onClick={() => socket.close()}>Close</button>
         </Wrapper>
         <Accordion
           display={this.props.dropdownOpen}
-          data={this.state.data}
+          data={this.state.btcWsData}
           btcMarketCap={this.state.btcMarketCap}
           chartData={this.state.currentChartData}
         />

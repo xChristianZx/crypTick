@@ -35,7 +35,7 @@ const Charts = props => {
     return [item[0], item[5]];
   });
 
-  console.log("HERE I AM", ohlc, volume);
+  // console.log("HERE I AM", ohlc, volume);
 
   var config = {
     rangeSelector: {
