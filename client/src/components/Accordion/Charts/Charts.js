@@ -45,10 +45,13 @@ const Charts = props => {
     },
     chart: {
       backgroundColor: "dimgray",
-      height: "40%"
+      height: "50%"
     },
     title: {
-      text: null
+      floating: true,
+      text: product_id,
+      style: { color: "white", opacity: 0.2, fontSize: "50px" },
+      verticalAlign: "middle"
     },
     navigator: {
       enabled: false

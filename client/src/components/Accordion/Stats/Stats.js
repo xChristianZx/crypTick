@@ -1,26 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-import { numPadding, marketCapFormatting } from "../../../utils/formatting";
+import {
+  numPadding,
+  marketCapFormatting,
+  currencyFormatting
+} from "../../../utils/formatting";
 //region StyledComponents
 const Table = styled.table`
   /* border: 1px solid blue; */
-  height: 50%;
+  height: 90%;
   width: 20%;
   margin: 0.5rem;
+  padding: 0.5rem;
 `;
-const TBody = styled.tbody``;
+const TBody = styled.tbody`
+  border: 1px solid red;
+`;
 
-const Tr = styled.tr`
-  margin: 1rem;
-`;
+const Tr = styled.tr``;
 const Th = styled.th`
-  border-right: 1px solid gray;
+  border-right: 1px solid rgba(152, 152, 152, 0.2);
+  border-bottom: 1px solid rgba(152, 152, 152, 0.2);
   text-align: center;
   width: 40%;
+  font-size: 12px;
+  padding-right: 0.5rem;
+`;
+const ThSub = styled.span`
+  font-size: 8px;
+  opacity: 0.5;
 `;
 const Td = styled.td`
   padding-left: 0.5rem;
   width: 60%;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(152, 152, 152, 0.2);
+  text-align: center;
 `;
 //endregion
 
@@ -36,23 +51,31 @@ const Stats = props => {
       <TBody>
         <Tr>
           <Th>Market Cap</Th>
-          <Td>{marketCapFormatting(marketCap)}</Td>
+          <Td>${marketCapFormatting(marketCap)}</Td>
         </Tr>
         <Tr>
-          <Th>Open (24h)</Th>
-          <Td>{numPadding(open_24h)}</Td>
+          <Th>
+            Open <ThSub>(24h)</ThSub>
+          </Th>
+          <Td>{currencyFormatting(open_24h)}</Td>
         </Tr>
         <Tr>
-          <Th>High (24h)</Th>
-          <Td>{numPadding(high_24h)}</Td>
+          <Th>
+            High <ThSub>(24h)</ThSub>
+          </Th>
+          <Td>{currencyFormatting(high_24h)}</Td>
         </Tr>
         <Tr>
-          <Th>Low (24h)</Th>
-          <Td>{numPadding(low_24h)}</Td>
+          <Th>
+            Low <ThSub>(24h)</ThSub>
+          </Th>
+          <Td>{currencyFormatting(low_24h)}</Td>
         </Tr>
         <Tr>
-          <Th>Volume (30d)</Th>
-          <Td>{numPadding(volume_30d)}</Td>
+          <Th>
+            Volume <ThSub>(30d)</ThSub>
+          </Th>
+          <Td>{marketCapFormatting(volume_30d)}</Td>
         </Tr>
       </TBody>
     </Table>

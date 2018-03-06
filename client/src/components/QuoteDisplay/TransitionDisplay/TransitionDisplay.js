@@ -14,7 +14,6 @@ const Wrapper = styled.div`
   /* border: 1px solid orange; */
   margin: 0.5rem;
 `;
-
 const QuoteBoxItem = styled.div`
   display: flex;
   flex-flow: column nowrap;
@@ -23,13 +22,11 @@ const QuoteBoxItem = styled.div`
   color: white;
   /* border: 1px solid blue; */
 `;
-
 const ProductName = styled.h1`
   /* border-right: 1px solid gray; */
   padding: 0.5rem 1.5rem;
   line-height: 3rem;
 `;
-
 const SpotPriceWrapper = QuoteBoxItem.extend`
   flex-flow: row nowrap;
   justify-content: space-evenly;
@@ -46,7 +43,6 @@ const h1Default = styled.h1`
   margin: 0.25rem;
   padding: 0.25rem;
 `;
-
 const fadeOutGreen = keyframes`
   0% {    
     background-color: green;
@@ -78,7 +74,6 @@ const PercentageChange = h1Default.extend`
   color: ${props => (props.change > 0 ? "limegreen" : "red")};
 `;
 const Volume = h1Default.extend``;
-
 const Label = styled.label`
   color: gray;
   font-size: 0.75rem;

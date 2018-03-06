@@ -9,7 +9,7 @@ const Wrapper = styled.section`
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
-  height: ${props => (props.display ? "40vh" : "0")};
+  height: ${props => (props.display ? "50vh" : "0")};
   width: 100%;
   padding: 0 0.25rem;
   opacity: ${props => (props.display ? 1 : 0)};

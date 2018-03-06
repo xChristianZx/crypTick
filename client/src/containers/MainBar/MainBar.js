@@ -18,7 +18,6 @@ const MainBarWrapper = styled.section`
   border-radius: 5px;
   color: white;
 `;
-
 const Wrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
