@@ -31,17 +31,23 @@ const Charts = props => {
     })
     .reverse();
 
-  const volume = chartData.map(item => {
-    return [item[0], item[5]];
-  });
+  const volume = test
+    .map(item => {
+      return [item[0] * 1000, item[5]];
+    })
+    .reverse();
 
   // console.log("HERE I AM", ohlc, volume);
 
   var config = {
     rangeSelector: {
+      buttons: [
+        { type: "day", count: 1, text: "1D" },
+        { type: "month", count: 1, text: "1M" },
+        { type: "all", count: 1, text: "All" }
+      ],
       verticalAlign: "bottom",
-      enabled: false,
-      selected: 1
+      enabled: true
     },
     chart: {
       backgroundColor: "dimgray",
@@ -54,10 +60,10 @@ const Charts = props => {
       verticalAlign: "middle"
     },
     navigator: {
-      enabled: false
+      enabled: true
     },
     scrollbar: {
-      enabled: false
+      enabled: true
     },
     plotOptions: {
       candlestick: {
@@ -65,6 +71,43 @@ const Charts = props => {
         color: "red"
       }
     },
+    tooltip: { split: true },
+    xAxis: {
+      labels: {
+        style: { color: "white" }
+      }
+    },
+    yAxis: [
+      {
+        labels: {
+          align: "right",
+          x: -3,
+          style: { color: "white" }
+        },
+        title: {
+          text: "OHLC"
+        },
+        height: "60%",
+        lineWidth: 2,
+        resize: {
+          enabled: true
+        }
+      },
+      {
+        labels: {
+          align: "right",
+          x: -3,
+          style: { color: "white" }
+        },
+        title: {
+          text: "Volume"
+        },
+        top: "65%",
+        height: "35%",
+        offset: 0,
+        lineWidth: 2
+      }
+    ],
     series: [
       {
         type: "candlestick",
@@ -72,6 +115,18 @@ const Charts = props => {
         data: ohlc,
         tooltip: {
           valueDecimals: 2
+        },
+        dataGrouping: {
+          units: [["day", 1]]
+        }
+      },
+      {
+        type: "column",
+        name: "Volume",
+        data: volume,
+        yAxis: 1,
+        dataGrouping: {
+          units: [["day", 1]]
         }
       }
     ]
