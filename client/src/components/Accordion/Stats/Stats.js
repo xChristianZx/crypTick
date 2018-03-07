@@ -8,9 +8,9 @@ import {
 const Table = styled.table`
   /* border: 1px solid blue; */
   height: 90%;
-  width: 20%;
-  margin: 0.5rem;
-  padding: 0.5rem;
+  width: 15%;
+  margin: 0.25rem;
+  /* padding: 0.25rem; */
 `;
 const TBody = styled.tbody`
   border: 1px solid red;

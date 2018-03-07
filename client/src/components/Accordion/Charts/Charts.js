@@ -6,7 +6,7 @@ const ChartContainer = styled.div`
   /* border: 1px solid green; */
   height: 90%;
   width: 80%;
-  margin: 0.5rem;
+  margin: 0.25rem;
 `;
 
 const Charts = props => {
@@ -47,23 +47,27 @@ const Charts = props => {
         { type: "all", count: 1, text: "All" }
       ],
       verticalAlign: "bottom",
-      enabled: true
+      enabled: false
     },
     chart: {
-      backgroundColor: "dimgray",
-      height: "50%"
+      backgroundColor: "rgba(53, 60, 63, 1)",
+      // borderColor: 'white',
+      // borderWidth: 1,
+      height: "50%",
+      spacingLeft: 3,
+      spacingRight: 3,
     },
     title: {
       floating: true,
       text: product_id,
       style: { color: "white", opacity: 0.2, fontSize: "50px" },
-      verticalAlign: "middle"
+      verticalAlign: "middle",
     },
     navigator: {
       enabled: true
     },
     scrollbar: {
-      enabled: true
+      enabled: false
     },
     plotOptions: {
       candlestick: {
@@ -84,9 +88,9 @@ const Charts = props => {
           x: -3,
           style: { color: "white" }
         },
-        title: {
-          text: "OHLC"
-        },
+        // title: {
+        //   text: "OHLC"
+        // },
         height: "60%",
         lineWidth: 2,
         resize: {
@@ -99,9 +103,9 @@ const Charts = props => {
           x: -3,
           style: { color: "white" }
         },
-        title: {
-          text: "Volume"
-        },
+        // title: {
+        //   text: "Volume"
+        // },
         top: "65%",
         height: "35%",
         offset: 0,
