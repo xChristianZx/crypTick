@@ -11,8 +11,8 @@ const Wrapper = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  /* border: 1px solid orange; */
   margin: 0.5rem;
+  /* border: 1px solid orange; */
 `;
 const QuoteBoxItem = styled.div`
   display: flex;

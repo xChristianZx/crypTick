@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import TransitionDisplay from "./TransitionDisplay/TransitionDisplay";
+import MultiQuote from "./MultiQuote/MultiQuote";
 import Loading from "./Loading";
 
 const QuoteBox = styled.div`
@@ -19,7 +20,7 @@ class QuoteDisplay extends Component {
     count: 0
   };
   componentDidMount() {
-    this.interval = setInterval(this.loopList, 5000);
+    // this.interval = setInterval(this.loopList, 5000);
   }
 
   loopList = () => {
@@ -31,7 +32,7 @@ class QuoteDisplay extends Component {
   };
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    // clearInterval(this.interval);
   }
 
   render() {
@@ -50,7 +51,14 @@ class QuoteDisplay extends Component {
       <TransitionDisplay data={ltcData} />
     ];
 
-    return <QuoteBox>{transitionList[this.state.count]}</QuoteBox>;
+    return (
+      <QuoteBox>
+        {/* {transitionList[this.state.count]} */}
+        <MultiQuote data={btcData} />
+        <MultiQuote data={ethData} />
+        <MultiQuote data={ltcData} />
+      </QuoteBox>
+    );
   }
 }
 

@@ -55,13 +55,13 @@ const Charts = props => {
       // borderWidth: 1,
       height: "50%",
       spacingLeft: 3,
-      spacingRight: 3,
+      spacingRight: 3
     },
     title: {
       floating: true,
       text: product_id,
       style: { color: "white", opacity: 0.2, fontSize: "50px" },
-      verticalAlign: "middle",
+      verticalAlign: "middle"
     },
     navigator: {
       enabled: true
@@ -116,19 +116,24 @@ const Charts = props => {
       {
         type: "candlestick",
         name: product_id,
+        id: "chart",
         data: ohlc,
         tooltip: {
           valueDecimals: 2
         },
         dataGrouping: {
           units: [["day", 1]]
-        }
+        },
+        yAxis: 0,
+        zIndex: 3
       },
       {
         type: "column",
         name: "Volume",
+        linkedTo: "chart",
         data: volume,
         yAxis: 1,
+        zIndex: 0,
         dataGrouping: {
           units: [["day", 1]]
         }

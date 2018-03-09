@@ -11,8 +11,8 @@ const MainBarWrapper = styled.section`
   flex-flow: column nowrap;
   height: 100%;
   align-items: center;
-  width: 60vw;
-  padding: 0.5rem;
+  width: 65vw;
+  padding: 0.25rem 0.5rem;
   /* Same as #353C3F */
   background-color: rgba(53, 60, 63, 1);
   border-radius: 5px;
@@ -80,7 +80,7 @@ class MainBar extends Component {
 
   wsSetup = () => {
     socket.onmessage = msg => {
-      const data = JSON.parse(msg.data);      
+      const data = JSON.parse(msg.data);
       if (data.type === "ticker") {
         if (data.product_id === "BTC-USD") {
           this.setState({ btcWsData: data });
