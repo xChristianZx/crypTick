@@ -10,8 +10,8 @@ const Wrapper = styled.section`
   justify-content: space-evenly;
   align-items: center;
   height: ${props => (props.display ? "50vh" : "0")};
-  width: 100%;  
-  padding: 0.25rem;
+  width: 100%;
+  padding: 0 0.25rem;
   opacity: ${props => (props.display ? 1 : 0)};
   transition: opacity 0.5s ease-in, height 0.25s linear;
   background-color: inherit;
@@ -23,7 +23,7 @@ const Wrapper = styled.section`
 
 const Accordion = props => {
   if (!props.data) {
-    return <h2>Loading...</h2>;
+    return null;
   }
 
   return (

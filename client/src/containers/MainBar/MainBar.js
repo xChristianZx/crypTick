@@ -4,6 +4,7 @@ import QuoteDisplay from "../../components/QuoteDisplay/QuoteDisplay";
 import FaAngleRight from "react-icons/lib/fa/angle-right";
 import Accordion from "../../components/Accordion/Accordion";
 import Axios from "axios";
+import Header from "../../components/Header/Header";
 
 //#region Styled Components
 const MainBarWrapper = styled.section`
@@ -11,21 +12,21 @@ const MainBarWrapper = styled.section`
   flex-flow: column nowrap;
   height: 100%;
   align-items: center;
-  width: 65vw;
-  padding: 0.25rem 0.5rem;
+  width: 80vw;
+  padding: 0;
   /* Same as #353C3F */
   background-color: rgba(53, 60, 63, 1);
-  border-radius: 5px;
   color: white;
+  border: 5px solid gray;
 `;
 const Wrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  height: 8vh;
+  height: 15vh;
   width: 100%;
-  margin: 0.5rem;
+  /* margin: 0.5rem; */
   /* border: 2px solid green; */
 `;
 const DropdownButton = styled.button`
@@ -35,7 +36,7 @@ const DropdownButton = styled.button`
   border: none;
   height: 2rem;
   width: 2rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
   background-color: inherit;
   color: white;
   border-radius: 50%;
@@ -141,6 +142,7 @@ class MainBar extends Component {
     return (
       <MainBarWrapper>
         <Wrapper>
+          <Header />
           <DropdownButton
             dropdownOpen={this.props.dropdownOpen}
             onClick={this.props.handleClick}
@@ -155,12 +157,12 @@ class MainBar extends Component {
           />
           <button onClick={() => socket.close()}>Close</button>
         </Wrapper>
-        <Accordion
+        {/* <Accordion
           display={this.props.dropdownOpen}
           data={this.state.btcWsData}
           btcMarketCap={this.state.btcMarketCap}
           chartData={this.state.currentChartData}
-        />
+        /> */}
       </MainBarWrapper>
     );
   }

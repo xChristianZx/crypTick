@@ -1,18 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300");
-html {
-  height: 100%; }
+html,
+body {
+  height: 100%;
+  font-family: "Roboto", sans-serif; }
 
 body {
-  background-color: dimgray;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
-  font-size: 10px;
-  height: 100%; }
+  background-color: dimgray; }
 
 h1 {
   font-size: 1.4rem;
