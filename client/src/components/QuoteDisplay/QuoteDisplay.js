@@ -8,11 +8,14 @@ const QuoteBox = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: ${props => (props.loading ? "center" : "space-between")};
-  align-items: center;
+  align-items: flex-start;
   height: 100%;
   width: 100%;
-  margin: 0.5rem;
-  /* border: 1px solid purple; */
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  /* border: 2px solid purple;
+  border-top: none; */
 `;
 
 class QuoteDisplay extends Component {

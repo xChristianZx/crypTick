@@ -11,6 +11,7 @@ const MainBarWrapper = styled.section`
   display: flex;
   flex-flow: column nowrap;
   height: 100%;
+  min-height: 7vw;
   align-items: center;
   width: 80vw;
   padding: 0;
@@ -23,30 +24,31 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  align-items: center;
-  height: 15vh;
+  align-items: stretch;
+  height: 100%;
   width: 100%;
-  /* margin: 0.5rem; */
-  /* border: 2px solid green; */
+  padding: 0;
+  margin: 0;
+  border: 2px solid green;
 `;
-const DropdownButton = styled.button`
-  display: flex;
-  align-items: center;
-  max-width: 10%;
-  border: none;
-  height: 2rem;
-  width: 2rem;
-  font-size: 2rem;
-  background-color: inherit;
-  color: white;
-  border-radius: 50%;
-  &:focus {
-    outline: none;
-  }
-  & svg {
-    transform: ${props => (props.dropdownOpen ? "rotate(90deg)" : -1)};
-  }
-`;
+// const DropdownButton = styled.button`
+//   display: flex;
+//   align-items: center;
+//   max-width: 10%;
+//   border: none;
+//   height: 2rem;
+//   width: 2rem;
+//   font-size: 2rem;
+//   background-color: inherit;
+//   color: white;
+//   border-radius: 50%;
+//   &:focus {
+//     outline: none;
+//   }
+//   & svg {
+//     transform: ${props => (props.dropdownOpen ? "rotate(90deg)" : -1)};
+//   }
+// `;
 //#endregion
 
 const socket = new WebSocket("wss://ws-feed.gdax.com");
@@ -143,12 +145,6 @@ class MainBar extends Component {
       <MainBarWrapper>
         <Wrapper>
           <Header />
-          <DropdownButton
-            dropdownOpen={this.props.dropdownOpen}
-            onClick={this.props.handleClick}
-          >
-            <FaAngleRight />
-          </DropdownButton>
           <QuoteDisplay
             currentTicker={this.state.currentTicker}
             btcData={this.state.btcWsData}

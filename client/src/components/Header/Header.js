@@ -6,11 +6,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   margin: 0;
-  /* border: 1px solid green; */
-  border-right: 5px solid gray;
   height: 100%;
+  width: 20%;
   flex-grow: 1;
-  width: 15%;
+  border-right: 5px solid gray;
 `;
 const Headline = styled.h2`
   background-color: mediumblue;
@@ -19,14 +18,18 @@ const Headline = styled.h2`
   border-bottom: 5px solid gray;
   text-align: center;
 `;
+
 const Content = styled.div`
   background-color: black;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 0.25rem;
+  padding: 0.25rem 0.5rem;
   margin: 0;
+`;
+const DateTime = styled.h4`
+  padding: 0 0.5rem;
 `;
 //#endregion
 
@@ -38,8 +41,8 @@ const Header = props => {
     <Wrapper>
       <Headline children={"CrypTick"} />
       <Content>
-        <p>{date.toLocaleDateString("en-us", dateOptions)}</p>
-        <p>{date.toLocaleTimeString("en-us", timeOptions)}</p>
+        <DateTime>{date.toLocaleDateString("en-us", dateOptions)}</DateTime>
+        <DateTime>{date.toLocaleTimeString("en-us", timeOptions)}</DateTime>
       </Content>
     </Wrapper>
   );
