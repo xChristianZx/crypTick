@@ -19,7 +19,7 @@ const Headline = styled.h2`
   padding: 0.5rem;
   margin: 0;
   border-bottom: 5px solid gray;
-  text-align: center;  
+  text-align: center;
 `;
 
 const Content = styled.div`
@@ -32,7 +32,7 @@ const Content = styled.div`
   margin: 0;
 `;
 const DateTime = styled.h3`
-  padding: 0 0.5rem;  
+  padding: 0 0.5rem;
 `;
 //#endregion
 

@@ -10,11 +10,11 @@ const QuoteBox = styled.div`
   flex-flow: row nowrap;
   justify-content: center;
   align-items: stretch;
-  /* DO NOT ADD WIDTH OR HEIGHT AS IT OVERRIDES stretch! */
+  /* DO NOT ADD WIDTH OR HEIGHT AS IT OVERRIDES stretch! */ 
   padding: 0;
   margin: ${props => (props.loading ? "auto" : "0")};
   flex: 1;
-  /* border: 2px solid purple; */ 
+  /* border: 2px solid purple; */
 `;
 
 class QuoteDisplay extends Component {

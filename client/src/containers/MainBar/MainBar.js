@@ -11,13 +11,12 @@ import MultiQuote from "../../components/QuoteDisplay/MultiQuote/MultiQuote";
 const MainBarWrapper = styled.section`
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-start;
+  justify-content: stretch;
   align-items: center;
-  min-height: 7vw;
+  min-height: 7vh;
   height: 100%;
   width: 80vw;
   padding: 0;
-  /* Same as #353C3F */
   background-color: rgba(53, 60, 63, 1);
   color: white;
   border: 5px solid gray;
@@ -34,6 +33,8 @@ const Wrapper = styled.div`
   margin: 0;
   /* border: 1px solid green; */
 `;
+//#endregion
+
 // const DropdownButton = styled.button`
 //   display: flex;
 //   align-items: center;
@@ -52,7 +53,7 @@ const Wrapper = styled.div`
 //     transform: ${props => (props.dropdownOpen ? "rotate(90deg)" : -1)};
 //   }
 // `;
-//#endregion
+
 
 const socket = new WebSocket("wss://ws-feed.gdax.com");
 const heartbeat = {

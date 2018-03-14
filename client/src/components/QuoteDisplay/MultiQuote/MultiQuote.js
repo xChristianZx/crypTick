@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   align-content: stretch;
   align-items: stretch;
   margin: auto;
-  flex: 1;
+  flex: 1 1 auto;
   height: 100%;
   width: 20%;
   border-right: 5px solid gray;
