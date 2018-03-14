@@ -3,19 +3,18 @@ import styled from "styled-components";
 import TransitionDisplay from "./TransitionDisplay/TransitionDisplay";
 import MultiQuote from "./MultiQuote/MultiQuote";
 import Loading from "./Loading";
+import Header from "../Header/Header";
 
 const QuoteBox = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  justify-content: ${props => (props.loading ? "center" : "space-between")};
-  align-items: flex-start;
-  height: 100%;
-  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+  /* DO NOT ADD WIDTH OR HEIGHT AS IT OVERRIDES stretch! */
   padding: 0;
-  margin: 0;
-  flex-grow: 1;
-  /* border: 2px solid purple;
-  border-top: none; */
+  margin: ${props => (props.loading ? "auto" : "0")};
+  flex: 1;
+  /* border: 2px solid purple; */ 
 `;
 
 class QuoteDisplay extends Component {
@@ -56,7 +55,6 @@ class QuoteDisplay extends Component {
 
     return (
       <QuoteBox>
-        {/* {transitionList[this.state.count]} */}
         <MultiQuote data={btcData} />
         <MultiQuote data={ethData} />
         <MultiQuote data={ltcData} />

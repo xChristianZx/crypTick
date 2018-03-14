@@ -5,31 +5,34 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  margin: 0;
+  justify-content: center;
+  align-items: stretch;
   height: 100%;
   width: 20%;
-  flex-grow: 1;
+  margin: 0;
+  flex: 0 1 auto;
   border-right: 5px solid gray;
+  /* border: 2px solid purple;  */
 `;
 const Headline = styled.h2`
   background-color: mediumblue;
   padding: 0.5rem;
   margin: 0;
   border-bottom: 5px solid gray;
-  text-align: center;
+  text-align: center;  
 `;
 
 const Content = styled.div`
   background-color: black;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.25rem 0.5rem;
+  justify-content: space-around;
+  align-items: stretch;
+  padding: 0.5rem;
   margin: 0;
 `;
-const DateTime = styled.h4`
-  padding: 0 0.5rem;
+const DateTime = styled.h3`
+  padding: 0 0.5rem;  
 `;
 //#endregion
 

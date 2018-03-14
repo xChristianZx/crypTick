@@ -2,25 +2,21 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { currencyFormatting, numPadding } from "../../../utils/formatting";
 
-// const Wrapper = styled.div`
-//   display: flex;
-//   flex-flow: row nowrap;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100%;
-//   width: 100%;
-//   margin: 0.5rem;
-//   /* border: 1px solid orange; */
-//   background-color: inherit;
-// `;
 const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  margin: 0;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: stretch;
+  margin: auto;
+  flex: 1;
   height: 100%;
   width: 20%;
-  flex-grow: 1;
   border-right: 5px solid gray;
+  &:last-child {
+    border-right: none;
+  }
+  /* border: 1px solid yellow; */
 `;
 const Headline = styled.h2`
   background-color: mediumblue;
@@ -33,36 +29,23 @@ const Content = styled.div`
   background-color: ${props => (props.change > 0 ? "limegreen" : "red")};
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 0.25rem 0.5rem;
+  margin: 0;
+  height: 100%;
+`;
+const SpotPrice = styled.h2`
+  color: white;
   padding: 0 0.5rem;
-  margin: 0;
-  /* height: 100%; */
-  /* flex-grow: 1; */
-  /* flex-basis: auto; */
+  margin: auto;
 `;
-const QuoteBoxItem = styled.div`
-  display: ${props => (props.hide ? "none" : "flex")};
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
+const PercentageChange = styled.h3`
   color: white;
-  /* border: 1px solid blue; */
+  padding: 0 0.5rem;
+  margin: auto;
 `;
-const SpotPrice = styled.h1`
-  color: white;
-  margin: 0;
-  /* padding: 0.25rem; */
-`;
-const PercentageChange = styled.h4`
-  color: white;
-  margin: 0;
-`;
-const Label = styled.label`
-  color: gray;
-  font-size: 1rem;
-  font-weight: 600;
-`;
+
 const MultiQuote = ({ data }) => {
   const { product_id, price, side, volume_24h, open_24h } = data;
   const percentageChange24H = numPadding((price - open_24h) / open_24h * 100);

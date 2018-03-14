@@ -5,14 +5,16 @@ import FaAngleRight from "react-icons/lib/fa/angle-right";
 import Accordion from "../../components/Accordion/Accordion";
 import Axios from "axios";
 import Header from "../../components/Header/Header";
+import MultiQuote from "../../components/QuoteDisplay/MultiQuote/MultiQuote";
 
 //#region Styled Components
 const MainBarWrapper = styled.section`
   display: flex;
   flex-flow: column nowrap;
-  height: 100%;
-  min-height: 7vw;
+  justify-content: flex-start;
   align-items: center;
+  min-height: 7vw;
+  height: 100%;
   width: 80vw;
   padding: 0;
   /* Same as #353C3F */
@@ -23,13 +25,14 @@ const MainBarWrapper = styled.section`
 const Wrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-content: stretch;
   align-items: stretch;
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
-  border: 2px solid green;
+  /* border: 1px solid green; */
 `;
 // const DropdownButton = styled.button`
 //   display: flex;
@@ -151,8 +154,8 @@ class MainBar extends Component {
             ethData={this.state.ethWsData}
             ltcData={this.state.ltcWsData}
           />
-          <button onClick={() => socket.close()}>Close</button>
         </Wrapper>
+        {/* <button onClick={() => socket.close()}>Close</button> */}
         {/* <Accordion
           display={this.props.dropdownOpen}
           data={this.state.btcWsData}
