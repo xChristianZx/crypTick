@@ -10,7 +10,7 @@ const QuoteBox = styled.div`
   flex-flow: row nowrap;
   justify-content: center;
   align-items: stretch;
-  /* DO NOT ADD WIDTH OR HEIGHT AS IT OVERRIDES stretch! */ 
+  /* DO NOT ADD WIDTH OR HEIGHT AS IT OVERRIDES stretch! */
   padding: 0;
   margin: ${props => (props.loading ? "auto" : "0")};
   flex: 1;
@@ -38,7 +38,7 @@ class QuoteDisplay extends Component {
   }
 
   render() {
-    const { btcData, ethData, ltcData } = this.props;
+    const { btcData, ethData, ltcData, dropdownOpen } = this.props;
     if (!btcData || !ethData || !ltcData) {
       return (
         <QuoteBox loading>
@@ -55,9 +55,9 @@ class QuoteDisplay extends Component {
 
     return (
       <QuoteBox>
-        <MultiQuote data={btcData} />
-        <MultiQuote data={ethData} />
-        <MultiQuote data={ltcData} />
+        <MultiQuote dropdownOpen={dropdownOpen} data={btcData} />
+        <MultiQuote dropdownOpen={dropdownOpen} data={ethData} />
+        <MultiQuote dropdownOpen={dropdownOpen} data={ltcData} />
       </QuoteBox>
     );
   }

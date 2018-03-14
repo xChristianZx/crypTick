@@ -54,7 +54,6 @@ const Wrapper = styled.div`
 //   }
 // `;
 
-
 const socket = new WebSocket("wss://ws-feed.gdax.com");
 const heartbeat = {
   type: "subscribe",
@@ -69,7 +68,8 @@ class MainBar extends Component {
     ltcWsData: null,
     btcMarketCap: null,
     currentChartData: [],
-    currentTicker: 0
+    currentTicker: 0,
+    dropdownOpen: false
   };
 
   componentDidMount() {
@@ -144,12 +144,17 @@ class MainBar extends Component {
       .catch(err => console.log(err));
   };
 
+  handleClick = () => {
+    this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
+  };
+
   render() {
     return (
       <MainBarWrapper>
         <Wrapper>
           <Header />
           <QuoteDisplay
+            dropdownOpen={this.handleClick}
             currentTicker={this.state.currentTicker}
             btcData={this.state.btcWsData}
             ethData={this.state.ethWsData}
@@ -157,12 +162,12 @@ class MainBar extends Component {
           />
         </Wrapper>
         {/* <button onClick={() => socket.close()}>Close</button> */}
-        {/* <Accordion
-          display={this.props.dropdownOpen}
+        <Accordion
+          display={this.state.dropdownOpen}
           data={this.state.btcWsData}
           btcMarketCap={this.state.btcMarketCap}
           chartData={this.state.currentChartData}
-        /> */}
+        />
       </MainBarWrapper>
     );
   }
