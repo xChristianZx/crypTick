@@ -73,7 +73,7 @@ const MultiQuote = ({ data, dropdownOpen }) => {
       <HContainer>
         <Headline children={product_id} />
       </HContainer>
-      <Content>
+      <Content change={percentageChange24H}>
         <SpotPrice>{currencyFormatting(price)}</SpotPrice>
         <PercentageChange>{percentageChange24H}%</PercentageChange>
       </Content>
