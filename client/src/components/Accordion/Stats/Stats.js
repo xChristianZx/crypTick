@@ -23,8 +23,14 @@ const ProdName = styled.h4`
   padding: 0 1em;
   border-right: 1px solid rgba(255, 255, 255, 0.15);
 `;
-const Label = styled.label`
-  font-size: 0.8em;
+const Label = styled.p`
+  font-size: 0.7em;
+  font-weight: 400;
+  margin: 0;
+`;
+const Nums = styled.span`
+  font-size: 1.1rem;
+  font-weight: bolder;
 `;
 const Sub = styled.span`
   font-size: 10px;
@@ -35,7 +41,7 @@ const Sub = styled.span`
 
 const Stats = props => {
   const { high_24h, low_24h, open_24h, volume_30d, product_id } = props.data;
-  const marketCap = props.btcMarketCap;
+  const marketCap = props.currentTickerMktCap;
 
   if (!props.display) {
     return null;
@@ -43,18 +49,20 @@ const Stats = props => {
   return (
     <Container>
       <ProdName>{product_id}</ProdName>
-      <Label>Market Cap : {marketCapFormatting(marketCap)}</Label>
       <Label>
-        Open <Sub>(24h)</Sub> : {currencyFormatting(open_24h)}
+        Market Cap : <Nums>{marketCapFormatting(marketCap)}</Nums>
       </Label>
       <Label>
-        High <Sub>(24h)</Sub> : {currencyFormatting(high_24h)}
+        Open <Sub>(24h)</Sub> : <Nums>{currencyFormatting(open_24h)}</Nums>
       </Label>
       <Label>
-        Low <Sub>(24h)</Sub> : {currencyFormatting(low_24h)}
+        High <Sub>(24h)</Sub> : <Nums>{currencyFormatting(high_24h)}</Nums>
       </Label>
       <Label>
-        Volume <Sub>(30d)</Sub> : {volumeFormatting(volume_30d)}
+        Low <Sub>(24h)</Sub> : <Nums>{currencyFormatting(low_24h)}</Nums>
+      </Label>
+      <Label>
+        Volume <Sub>(30d)</Sub> : <Nums>{volumeFormatting(volume_30d)}</Nums>
       </Label>
     </Container>
   );
