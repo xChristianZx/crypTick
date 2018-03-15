@@ -44,12 +44,43 @@ const Charts = props => {
   const hsConfig = {
     rangeSelector: {
       buttons: [
-        { type: "day", count: 1, text: "1D" },
         { type: "month", count: 1, text: "1M" },
-        { type: "all", count: 1, text: "All" }
+        { type: "month", count: 3, text: "3M" },
+        { type: "ytd", text: "YTD" },
+        { type: "all", text: "All" }
       ],
+      buttonTheme: {
+        // styles for the buttons
+        fill: "none",
+        stroke: "none",
+        "stroke-width": 0,
+        r: 8,
+        style: {
+          color: "white",
+          fontWeight: "bold"
+        },
+        states: {
+          hover: {
+            style: { color: "black" }
+          },
+          select: {
+            fill: "gray",
+            style: {
+              color: "white"
+            }
+          }
+        }
+      },
       verticalAlign: "bottom",
-      enabled: true
+      enabled: true,
+      inputStyle: {
+        color: "white",
+        fontWeight: "regular"
+      },
+      labelStyle: {
+        color: "gray",
+        fontWeight: "regular"
+      }
     },
     chart: {
       backgroundColor: "rgba(53, 60, 63, 1)",
