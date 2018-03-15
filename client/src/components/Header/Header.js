@@ -25,7 +25,7 @@ const Headline = styled.h2`
 const Content = styled.div`
   background-color: black;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: space-around;
   align-items: stretch;
   padding: 0.5rem;
@@ -36,6 +36,20 @@ const Content = styled.div`
     justify-content: center;
   }
 `;
+const DTContainer = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  /* border: 1px solid white; */
+`;
+const StatusContainer = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.25em;
+  /* border: 1px solid white; */
+`;
 const DateTime = styled.h3`
   padding: 0 0.5rem;
   font-size: 1.25em;
@@ -43,18 +57,44 @@ const DateTime = styled.h3`
     font-size: 1.75em;
   }
 `;
+const Disconnect = styled.p`
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.25em;
+  margin: 0;
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+  }
+`;
+const Status = styled.p`
+  color: rgba(50, 205, 50, 0.75);
+  font-size: 0.25em;
+  margin: 0;
+`;
 //#endregion
 
 const Header = props => {
   const date = new Date();
   const timeOptions = { hour: "numeric", minute: "numeric" };
   const dateOptions = { month: "short", day: "numeric" };
+  const closeWS = props.closeWS;
   return (
     <Wrapper>
       <Headline children={"CrypTick"} />
       <Content>
-        <DateTime>{date.toLocaleDateString("en-us", dateOptions)}</DateTime>
-        <DateTime>{date.toLocaleTimeString("en-us", timeOptions)}</DateTime>
+        <DTContainer>
+          <DateTime>{date.toLocaleDateString("en-us", dateOptions)}</DateTime>
+          <DateTime>{date.toLocaleTimeString("en-us", timeOptions)}</DateTime>
+        </DTContainer>
+        <StatusContainer>
+          <Status title="Websocket Connection Status">Connected</Status>
+          <Disconnect
+            title="Close WebSocket Connection"
+            onClick={() => closeWS()}
+          >
+            Disconnect
+          </Disconnect>
+        </StatusContainer>
       </Content>
     </Wrapper>
   );
