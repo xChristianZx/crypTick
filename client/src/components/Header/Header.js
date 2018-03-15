@@ -33,6 +33,7 @@ const Content = styled.div`
 `;
 const DateTime = styled.h3`
   padding: 0 0.5rem;
+  font-size: 1.75em;
 `;
 //#endregion
 

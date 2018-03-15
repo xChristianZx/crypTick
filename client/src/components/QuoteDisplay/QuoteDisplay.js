@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import TransitionDisplay from "./TransitionDisplay/TransitionDisplay";
+// import TransitionDisplay from "./TransitionDisplay/TransitionDisplay";
 import MultiQuote from "./MultiQuote/MultiQuote";
 import Loading from "./Loading";
-import Header from "../Header/Header";
 
 const QuoteBox = styled.div`
   display: flex;
@@ -47,11 +46,11 @@ class QuoteDisplay extends Component {
       );
     }
 
-    const transitionList = [
-      <TransitionDisplay data={btcData} />,
-      <TransitionDisplay data={ethData} />,
-      <TransitionDisplay data={ltcData} />
-    ];
+    // const transitionList = [
+    //   <TransitionDisplay data={btcData} />,
+    //   <TransitionDisplay data={ethData} />,
+    //   <TransitionDisplay data={ltcData} />
+    // ];
 
     return (
       <QuoteBox>
