@@ -13,9 +13,19 @@ export const currencyFormatting = num => {
 
 export const marketCapFormatting = num => {
   const usdFormatting = new Intl.NumberFormat("en-US", {
-    style: "decimal",
+    style: "currency",
     currency: "USD",
     minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  });
+  return usdFormatting.format(num);
+};
+
+export const volumeFormatting = num => {
+  const usdFormatting = new Intl.NumberFormat("en-US", {
+    style: "decimal",
+    currency: "USD",
+    minimumFractionDigits: 2,
     maximumFractionDigits: 2
   });
   return usdFormatting.format(num);
