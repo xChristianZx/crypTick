@@ -30,10 +30,18 @@ const Content = styled.div`
   align-items: stretch;
   padding: 0.5rem;
   margin: 0;
+  @media (max-width: 1140px) {
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 const DateTime = styled.h3`
   padding: 0 0.5rem;
-  font-size: 1.75em;
+  font-size: 1.25em;
+  @media (min-width: 1440px) {
+    font-size: 1.75em;
+  }
 `;
 //#endregion
 
