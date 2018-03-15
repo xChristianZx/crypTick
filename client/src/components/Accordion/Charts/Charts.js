@@ -18,14 +18,15 @@ const Charts = props => {
   if (!props.display) {
     return null;
   }
-  const { product_id } = props.data;
-  const { chartData } = props;
+
+  const { chartData, currentTicker } = props;
 
   console.log("chartData", chartData);
   /* RESPONSE FORMAT- [time,low, high, open, close, volume]
      NOTE - GDAX returns time in Epoch Unix
   */
-  //90 days
+
+  /* 90 days */
   // const test = chartData.slice(0, 89);
 
   const ohlc = chartData
@@ -56,16 +57,16 @@ const Charts = props => {
       borderWidth: 1,
       height: "60%",
       // margin: [0, 0, 0, 0],
-      width: 950,
+      width: 950
       // spacingLeft: 3,
       // spacingRight: 3
     },
-    title: {
-      floating: true,
-      text: product_id,
-      style: { color: "white", opacity: 0.2, fontSize: "50px" },
-      verticalAlign: "middle"
-    },
+    // title: {
+    //   floating: true,
+    //   text: currentTicker,
+    //   style: { color: "white", opacity: 0.2, fontSize: "50px" },
+    //   verticalAlign: "top"
+    // },
     navigator: {
       enabled: true
     },
@@ -118,7 +119,7 @@ const Charts = props => {
     series: [
       {
         type: "candlestick",
-        name: product_id,
+        name: currentTicker,
         id: "chart",
         data: ohlc,
         tooltip: {

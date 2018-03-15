@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import QuoteDisplay from "../../components/QuoteDisplay/QuoteDisplay";
-import FaAngleRight from "react-icons/lib/fa/angle-right";
 import Accordion from "../../components/Accordion/Accordion";
 import Axios from "axios";
 import Header from "../../components/Header/Header";
-import MultiQuote from "../../components/QuoteDisplay/MultiQuote/MultiQuote";
 
 //#region Styled Components
 const MainBarWrapper = styled.section`
@@ -35,25 +33,6 @@ const Wrapper = styled.div`
 `;
 //#endregion
 
-// const DropdownButton = styled.button`
-//   display: flex;
-//   align-items: center;
-//   max-width: 10%;
-//   border: none;
-//   height: 2rem;
-//   width: 2rem;
-//   font-size: 2rem;
-//   background-color: inherit;
-//   color: white;
-//   border-radius: 50%;
-//   &:focus {
-//     outline: none;
-//   }
-//   & svg {
-//     transform: ${props => (props.dropdownOpen ? "rotate(90deg)" : -1)};
-//   }
-// `;
-
 const socket = new WebSocket("wss://ws-feed.gdax.com");
 const heartbeat = {
   type: "subscribe",
@@ -66,10 +45,11 @@ class MainBar extends Component {
     btcWsData: null,
     ethWsData: null,
     ltcWsData: null,
-    btcMarketCap: null,
-    currentChartData: [],
-    currentTicker: 0,
+    currentTickerMktCap: null,
+    // currentTicker: 0,
+    currentTickerFocus: "BTC-USD",
     dropdownOpen: false
+    // wsReadyState: 0
   };
 
   componentDidMount() {
@@ -78,7 +58,6 @@ class MainBar extends Component {
     };
     this.wsSetup();
     this.fetchMarketCap();
-    this.fetchHistoricalData();
   }
 
   componentWillUnmount() {
@@ -107,10 +86,13 @@ class MainBar extends Component {
 
     socket.onerror = err => {
       console.log("Error: ", err);
+      // console.log(socket.readyState);
+      // this.setState({ wsReadyState: socket.readyState });
     };
 
     socket.onclose = msg => {
       console.log(msg);
+      // this.setState({ wsReadyState: socket.readyState });
     };
 
     window.addEventListener("beforeunload", () => {
@@ -124,35 +106,37 @@ class MainBar extends Component {
     Axios.get(baseUrl)
       .then(res => {
         console.log("fetchMarketCap", res);
-        this.setState({ btcMarketCap: res.data[0].market_cap_usd });
+        this.setState({ currentTickerMktCap: res.data[0].market_cap_usd });
       })
       .catch(err => console.log(err));
   };
 
-  fetchHistoricalData = () => {
-    const baseUrl =
-      "https://api.gdax.com/products/BTC-USD/candles?granularity=86400";
-    // const params = {
-    //   granularity: 86400
-    // };
-
-    Axios.get(baseUrl)
-      .then(res => {
-        console.log("Hist Data:", res.data);
-        this.setState({ currentChartData: res.data });
-      })
-      .catch(err => console.log(err));
+  handleClick = (e, id) => {
+    // console.log(e, id);
+    if (this.state.dropdownOpen && id !== this.state.currentTickerFocus) {
+      return this.setState({
+        currentTickerFocus: id
+      });
+    }
+    if (this.state.dropdownOpen && id === this.state.currentTickerFocus) {
+      return this.setState({ dropdownOpen: false });
+    }
+    this.setState(prevState => ({
+      dropdownOpen: true,
+      currentTickerFocus: id
+    }));
   };
-
-  handleClick = () => {
-    this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
+  //For Header Disconnect
+  closeWS = () => {
+    socket.close();
   };
 
   render() {
+    // console.log(this.state.currentTickerFocus);
     return (
       <MainBarWrapper>
         <Wrapper>
-          <Header />
+          <Header closeWS={this.closeWS} />
           <QuoteDisplay
             dropdownOpen={this.handleClick}
             currentTicker={this.state.currentTicker}
@@ -161,12 +145,11 @@ class MainBar extends Component {
             ltcData={this.state.ltcWsData}
           />
         </Wrapper>
-        {/* <button onClick={() => socket.close()}>Close</button> */}
         <Accordion
           display={this.state.dropdownOpen}
           data={this.state.btcWsData}
-          btcMarketCap={this.state.btcMarketCap}
-          chartData={this.state.currentChartData}
+          currentTickerMktCap={this.state.currentTickerMktCap}
+          currentTicker={this.state.currentTickerFocus}
         />
       </MainBarWrapper>
     );

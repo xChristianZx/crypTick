@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Stats from "./Stats/Stats";
-import Charts from "./Charts/Charts";
+import Charts from "../../containers/Charts/Charts";
 
 const Wrapper = styled.div`
   display: flex;

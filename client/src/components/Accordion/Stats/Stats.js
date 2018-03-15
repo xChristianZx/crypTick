@@ -40,7 +40,8 @@ const Sub = styled.span`
 //endregion
 
 const Stats = props => {
-  const { high_24h, low_24h, open_24h, volume_30d, product_id } = props.data;
+  const { high_24h, low_24h, open_24h, volume_30d } = props.data;
+  const { currentTicker } = props;
   const marketCap = props.currentTickerMktCap;
 
   if (!props.display) {
@@ -48,7 +49,7 @@ const Stats = props => {
   }
   return (
     <Container>
-      <ProdName>{product_id}</ProdName>
+      <ProdName>{currentTicker}</ProdName>
       <Label>
         Market Cap : <Nums>{marketCapFormatting(marketCap)}</Nums>
       </Label>
