@@ -41,8 +41,7 @@ const Sub = styled.span`
 
 const Stats = props => {
   const { high_24h, low_24h, open_24h, volume_30d } = props.data;
-  const { currentTicker } = props;
-  const marketCap = props.currentTickerMktCap;
+  const { currentTicker, currentTickerMktCap } = props;
 
   if (!props.display) {
     return null;
@@ -51,7 +50,7 @@ const Stats = props => {
     <Container>
       <ProdName>{currentTicker}</ProdName>
       <Label>
-        Market Cap : <Nums>{marketCapFormatting(marketCap)}</Nums>
+        Market Cap : <Nums>{marketCapFormatting(currentTickerMktCap)}</Nums>
       </Label>
       <Label>
         Open <Sub>(24h)</Sub> : <Nums>{currencyFormatting(open_24h)}</Nums>

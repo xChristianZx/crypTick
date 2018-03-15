@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import Axios from "axios";
 import HSChart from "../../components/Accordion/Charts/Charts";
 
@@ -35,7 +34,7 @@ class Chart extends Component {
 
     Axios.get(baseUrl)
       .then(res => {
-        console.log("Hist Data:", res.data);
+        // console.log("Hist Data:", res.data);
         this.setState({ currentChartData: res.data });
       })
       .catch(err => console.log(err));

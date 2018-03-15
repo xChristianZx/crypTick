@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import QuoteDisplay from "../../components/QuoteDisplay/QuoteDisplay";
-import Accordion from "../../components/Accordion/Accordion";
-import Axios from "axios";
+import Accordion from "../Accordion/Accordion";
 import Header from "../../components/Header/Header";
 
 //#region Styled Components
@@ -45,10 +44,9 @@ class MainBar extends Component {
     btcWsData: null,
     ethWsData: null,
     ltcWsData: null,
-    currentTickerMktCap: null,
-    // currentTicker: 0,
     currentTickerFocus: "BTC-USD",
     dropdownOpen: false
+    // currentTicker: 0,
     // wsReadyState: 0
   };
 
@@ -57,7 +55,6 @@ class MainBar extends Component {
       socket.send(JSON.stringify(heartbeat));
     };
     this.wsSetup();
-    this.fetchMarketCap();
   }
 
   componentWillUnmount() {
@@ -100,17 +97,6 @@ class MainBar extends Component {
     });
   };
 
-  fetchMarketCap = () => {
-    const baseUrl = "https://api.coinmarketcap.com/v1/ticker/bitcoin/";
-
-    Axios.get(baseUrl)
-      .then(res => {
-        console.log("fetchMarketCap", res);
-        this.setState({ currentTickerMktCap: res.data[0].market_cap_usd });
-      })
-      .catch(err => console.log(err));
-  };
-
   handleClick = (e, id) => {
     // console.log(e, id);
     if (this.state.dropdownOpen && id !== this.state.currentTickerFocus) {
@@ -126,13 +112,22 @@ class MainBar extends Component {
       currentTickerFocus: id
     }));
   };
+
   //For Header Disconnect
   closeWS = () => {
     socket.close();
   };
 
   render() {
-    // console.log(this.state.currentTickerFocus);
+    const currentWSData = state => {
+      if (state === "BTC-USD") {
+        return this.state.btcWsData;
+      } else if (state === "ETH-USD") {
+        return this.state.ethWsData;
+      } else {
+        return this.state.ltcWsData;
+      }
+    };
     return (
       <MainBarWrapper>
         <Wrapper>
@@ -147,8 +142,7 @@ class MainBar extends Component {
         </Wrapper>
         <Accordion
           display={this.state.dropdownOpen}
-          data={this.state.btcWsData}
-          currentTickerMktCap={this.state.currentTickerMktCap}
+          data={currentWSData(this.state.currentTickerFocus)}
           currentTicker={this.state.currentTickerFocus}
         />
       </MainBarWrapper>

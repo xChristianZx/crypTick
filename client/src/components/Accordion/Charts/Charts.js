@@ -21,7 +21,7 @@ const Charts = props => {
 
   const { chartData, currentTicker } = props;
 
-  console.log("chartData", chartData);
+  // console.log("chartData", chartData);
   /* RESPONSE FORMAT- [time,low, high, open, close, volume]
      NOTE - GDAX returns time in Epoch Unix
   */
