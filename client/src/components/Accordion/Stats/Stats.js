@@ -12,8 +12,7 @@ const Container = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem;
-  /* margin-bottom: 1rem; */
+  margin: 1em 1em 0.25em;
   width: 95%;
   padding: 0.25em;
   flex: 1;

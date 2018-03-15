@@ -9,7 +9,7 @@ const ChartContainer = styled.div`
   justify-content: center;
   height: 90%;
   width: 95%;
-  margin: 1em auto;
+  margin: .25em auto .5em;
   padding: 0.5rem;
   flex: 2;
 `;
@@ -54,11 +54,11 @@ const Charts = props => {
     },
     chart: {
       backgroundColor: "rgba(53, 60, 63, 1)",
-      borderColor: "white",
+      borderColor: "gray",
       borderWidth: 1,
       // height: "100%",
       // margin: [0, 0, 0, 0],
-      width: 900
+      width: 950
       // spacingLeft: 3,
       // spacingRight: 3
     },
