@@ -9,7 +9,7 @@ const ChartContainer = styled.div`
   justify-content: center;
   height: 90%;
   width: 95%;
-  margin: .25em auto .5em;
+  margin: 0.25em auto 0.5em;
   padding: 0.5rem;
   flex: 2;
 `;
@@ -22,11 +22,9 @@ const Charts = props => {
   const { chartData } = props;
 
   console.log("chartData", chartData);
-  /*
-          RESPONSE FORMAT
-    [time,low, high, open, close, volume]
-    *NOTE* GDAX returns time in Epoch Unix
-*/
+  /* RESPONSE FORMAT- [time,low, high, open, close, volume]
+     NOTE - GDAX returns time in Epoch Unix
+  */
   //90 days
   // const test = chartData.slice(0, 89);
 
@@ -42,7 +40,7 @@ const Charts = props => {
     })
     .reverse();
 
-  var config = {
+  const hsConfig = {
     rangeSelector: {
       buttons: [
         { type: "day", count: 1, text: "1D" },
@@ -56,9 +54,9 @@ const Charts = props => {
       backgroundColor: "rgba(53, 60, 63, 1)",
       borderColor: "gray",
       borderWidth: 1,
-      // height: "100%",
+      height: "60%",
       // margin: [0, 0, 0, 0],
-      width: 950
+      width: 950,
       // spacingLeft: 3,
       // spacingRight: 3
     },
@@ -148,7 +146,7 @@ const Charts = props => {
 
   return (
     <ChartContainer>
-      <HighCharts config={config} />
+      <HighCharts config={hsConfig} />
     </ChartContainer>
   );
 };
