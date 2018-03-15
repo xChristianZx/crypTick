@@ -5,10 +5,10 @@ import Charts from "./Charts/Charts";
 
 const Wrapper = styled.div`
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+  flex-flow: column nowrap;
+  justify-content: space-around;
   align-content: stretch;
-  align-items: stretch;
+  align-items: center;
   height: ${props => (props.display ? "100%" : "0%")};
   /* height: 100%; */
   width: 100%;

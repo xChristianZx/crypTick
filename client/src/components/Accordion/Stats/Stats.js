@@ -2,50 +2,36 @@ import React from "react";
 import styled from "styled-components";
 import {
   marketCapFormatting,
-  currencyFormatting
+  currencyFormatting,
+  volumeFormatting
 } from "../../../utils/formatting";
 //region StyledComponents
 const Container = styled.div`
-  border: 1px solid white;
+  /* border: 1px solid white; */
   display: flex;
   flex-flow: row nowrap;
-  margin: 0 auto;
-  margin-right: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  /* margin-bottom: 1rem; */
+  width: 95%;
   padding: 0.25em;
-  /* width: 30%; */
   flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 `;
-
-const Table = styled.table`
-  table-layout: fixed;
-  border: 1px solid blue;
-  border-collapse: collapse;
-  /* height: 90%; */
-  width: 100%;
-  margin: auto;
-  padding: 0.5rem;
+const ProdName = styled.h4`
+  margin: 0.5em 0;
+  padding: 0 1em;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
 `;
-const TBody = styled.tbody``;
-const Tr = styled.tr``;
-const Th = styled.th`
-  border-right: 1px solid rgba(152, 152, 152, 0.2);
-  border-bottom: 1px solid rgba(152, 152, 152, 0.2);
-  text-align: center;
-  width: 40%;
-  font-size: 12px;
-  padding-right: 0.5rem;
+const Label = styled.label`
+  font-size: 0.8em;
 `;
-const ThSub = styled.span`
-  font-size: 8px;
+const Sub = styled.span`
+  font-size: 10px;
   opacity: 0.5;
 `;
-const Td = styled.td`
-  padding-left: 0.5rem;
-  width: 60%;
-  font-size: 12px;
-  border-bottom: 1px solid rgba(152, 152, 152, 0.2);
-  text-align: center;
-`;
+
 //endregion
 
 const Stats = props => {
@@ -57,39 +43,20 @@ const Stats = props => {
   }
   return (
     <Container>
-      <Table>
-        <caption>{product_id}</caption>
-        <TBody>
-          <Tr>
-            <Th>Market Cap</Th>
-            <Td>${marketCapFormatting(marketCap)}</Td>
-          </Tr>
-          <Tr>
-            <Th>
-              Open <ThSub>(24h)</ThSub>
-            </Th>
-            <Td>{currencyFormatting(open_24h)}</Td>
-          </Tr>
-          <Tr>
-            <Th>
-              High <ThSub>(24h)</ThSub>
-            </Th>
-            <Td>{currencyFormatting(high_24h)}</Td>
-          </Tr>
-          <Tr>
-            <Th>
-              Low <ThSub>(24h)</ThSub>
-            </Th>
-            <Td>{currencyFormatting(low_24h)}</Td>
-          </Tr>
-          <Tr>
-            <Th>
-              Volume <ThSub>(30d)</ThSub>
-            </Th>
-            <Td>{marketCapFormatting(volume_30d)}</Td>
-          </Tr>
-        </TBody>
-      </Table>
+      <ProdName>{product_id}</ProdName>
+      <Label>Market Cap : {marketCapFormatting(marketCap)}</Label>
+      <Label>
+        Open <Sub>(24h)</Sub> : {currencyFormatting(open_24h)}
+      </Label>
+      <Label>
+        High <Sub>(24h)</Sub> : {currencyFormatting(high_24h)}
+      </Label>
+      <Label>
+        Low <Sub>(24h)</Sub> : {currencyFormatting(low_24h)}
+      </Label>
+      <Label>
+        Volume <Sub>(30d)</Sub> : {volumeFormatting(volume_30d)}
+      </Label>
     </Container>
   );
 };

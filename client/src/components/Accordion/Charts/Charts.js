@@ -3,13 +3,13 @@ import HighCharts from "react-highcharts/ReactHighstock.src";
 import styled from "styled-components";
 
 const ChartContainer = styled.div`
-  border: 1px solid green;
+  /* border: 1px solid green; */
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   height: 90%;
-  width: 70%;
-  margin: auto;
+  width: 95%;
+  margin: 1em auto;
   padding: 0.5rem;
   flex: 2;
 `;
@@ -54,13 +54,13 @@ const Charts = props => {
     },
     chart: {
       backgroundColor: "rgba(53, 60, 63, 1)",
-      // borderColor: 'white',
-      // borderWidth: 1,
-      // height: "50%",
-      margin: [0, 0, 0, 0],
-      width: 800,
-      spacingLeft: 3,
-      spacingRight: 3
+      borderColor: "white",
+      borderWidth: 1,
+      // height: "100%",
+      // margin: [0, 0, 0, 0],
+      width: 900
+      // spacingLeft: 3,
+      // spacingRight: 3
     },
     title: {
       floating: true,
