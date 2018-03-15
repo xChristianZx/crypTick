@@ -15,6 +15,9 @@ const Wrapper = styled.div`
   width: 20%;
   border-right: 5px solid gray;
   overflow: hidden;
+  &:hover {
+    cursor: pointer;
+  }
   &:last-child {
     border-right: none;
   }
