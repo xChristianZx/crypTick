@@ -3,22 +3,25 @@ import styled from "styled-components";
 import Stats from "./Stats/Stats";
 import Charts from "./Charts/Charts";
 
-const Wrapper = styled.section`
-  /* border: 1px solid red; */
+const Wrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  height: ${props => (props.display ? "50vh" : "0")};
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: stretch;
+  height: ${props => (props.display ? "100%" : "0%")};
+  /* height: 100%; */
   width: 100%;
-  padding: 0 0.25rem;
+  margin: 0;
+  /* margin-top: ${props => (props.display ? "1rem" : "0")}; */
+  padding: 0;
   opacity: ${props => (props.display ? 1 : 0)};
-  transition: opacity 0.5s ease-in, height 0.25s linear;
+  transition: opacity 1s ease-in, height .5s ease-in-out;
   background-color: inherit;
   color: white;
-  border-top: 1px solid rgba(64, 72, 76, 0.75);
-  border-bottom-left-radius: inherit;
-  border-bottom-right-radius: inherit;
+  flex: 1;
+  border-top: ${props => (props.display ? "5px solid gray" : "none")};
+  /* border: 1px solid red; */
 `;
 
 const Accordion = props => {

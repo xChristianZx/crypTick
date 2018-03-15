@@ -3,10 +3,15 @@ import HighCharts from "react-highcharts/ReactHighstock.src";
 import styled from "styled-components";
 
 const ChartContainer = styled.div`
-  /* border: 1px solid green; */
+  border: 1px solid green;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
   height: 90%;
-  width: 80%;
-  margin: 0.25rem;
+  width: 70%;
+  margin: auto;
+  padding: 0.5rem;
+  flex: 2;
 `;
 
 const Charts = props => {
@@ -23,21 +28,19 @@ const Charts = props => {
     *NOTE* GDAX returns time in Epoch Unix
 */
   //90 days
-  const test = chartData.slice(0, 89);
+  // const test = chartData.slice(0, 89);
 
-  const ohlc = test
+  const ohlc = chartData
     .map(item => {
       return [item[0] * 1000, item[3], item[2], item[1], item[4]];
     })
     .reverse();
 
-  const volume = test
+  const volume = chartData
     .map(item => {
       return [item[0] * 1000, item[5]];
     })
     .reverse();
-
-  // console.log("HERE I AM", ohlc, volume);
 
   var config = {
     rangeSelector: {
@@ -47,13 +50,15 @@ const Charts = props => {
         { type: "all", count: 1, text: "All" }
       ],
       verticalAlign: "bottom",
-      enabled: false
+      enabled: true
     },
     chart: {
       backgroundColor: "rgba(53, 60, 63, 1)",
       // borderColor: 'white',
       // borderWidth: 1,
-      height: "50%",
+      // height: "50%",
+      margin: [0, 0, 0, 0],
+      width: 800,
       spacingLeft: 3,
       spacingRight: 3
     },
