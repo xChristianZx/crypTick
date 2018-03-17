@@ -32,12 +32,7 @@ const Wrapper = styled.div`
 `;
 //#endregion
 
-const socket = new WebSocket("wss://ws-feed.gdax.com");
-const heartbeat = {
-  type: "subscribe",
-  product_ids: ["BTC-USD", "ETH-USD", "LTC-USD"],
-  channels: ["heartbeat", "ticker"]
-};
+const socket = new WebSocket("ws://localhost:5000");
 
 class MainBar extends Component {
   state = {
@@ -52,7 +47,11 @@ class MainBar extends Component {
 
   componentDidMount() {
     socket.onopen = () => {
-      socket.send(JSON.stringify(heartbeat));
+      const openResponse = JSON.stringify({
+        type: "message",
+        data: "Client Connected"
+      });
+      socket.send(openResponse);
     };
     this.wsSetup();
   }
@@ -63,6 +62,7 @@ class MainBar extends Component {
 
   wsSetup = () => {
     socket.onmessage = msg => {
+      // console.log(msg);
       const data = JSON.parse(msg.data);
       if (data.type === "ticker") {
         if (data.product_id === "BTC-USD") {
