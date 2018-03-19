@@ -47,11 +47,7 @@ class MainBar extends Component {
 
   componentDidMount() {
     socket.onopen = () => {
-      const openResponse = JSON.stringify({
-        type: "message",
-        data: "Client Connected"
-      });
-      socket.send(openResponse);
+      socket.send(JSON.stringify("Client Connected"));
     };
     this.wsSetup();
   }

@@ -35,7 +35,7 @@ wsGDAX.onmessage = msg => {
 };
 
 wsGDAX.onerror = err => {
-  console.log(err);
+  console.log(err.message);
 };
 
 wsGDAX.onclose = msg => {
@@ -56,10 +56,10 @@ wsServer.on("connection", ws => {
     console.log("Client message:", msg.data);
   };
   ws.onerror = err => {
-    console.log("Client Error:", err);
+    console.log("Client Error:", err.message);
   };
   ws.onclose = msg => {
-    console.log("Client Connection Closed:", msg);
+    console.log("Client Connection Closed:", msg.code);
   };
 });
 
