@@ -32,7 +32,10 @@ const Wrapper = styled.div`
 `;
 //#endregion
 
-const socket = new WebSocket("ws://localhost:5000");
+const socket =
+  process.env.NODE_ENV === "production"
+    ? new WebSocket("wss://cryptick.herokuapp.com/")
+    : new WebSocket("ws://localhost:5000");
 
 class MainBar extends Component {
   state = {
