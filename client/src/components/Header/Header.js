@@ -67,17 +67,65 @@ const Disconnect = styled.p`
   }
 `;
 const Status = styled.p`
-  color: rgba(50, 205, 50, 0.75);
+  color: ${props => props.color};
   font-size: 0.25em;
   margin: 0;
 `;
 //#endregion
 
 const Header = props => {
+  const { closeWS, openWS, wsReadyState } = props;
+
   const date = new Date();
   const timeOptions = { hour: "numeric", minute: "numeric" };
   const dateOptions = { month: "short", day: "numeric" };
-  const closeWS = props.closeWS;
+
+  // === Renders the WS connection status === //
+  const wsStatus = state => {
+    if (state === 0) {
+      return (
+        <Status color={"white"} title="Websocket Connection Status">
+          Connecting
+        </Status>
+      );
+    } else if (state === 1) {
+      return (
+        <Status
+          color={"rgba(50, 205, 50, 0.75)"}
+          title="Websocket Connection Status"
+        >
+          Connected
+        </Status>
+      );
+    } else {
+      return (
+        <Status color={"red"} title="Websocket Connection Status">
+          Disconnected
+        </Status>
+      );
+    }
+  };
+
+  // TODO - figure out how to reconnect
+  // const connectDisconnectBtn = state => {
+  //   if (state === 0 || state === 1) {
+  //     return (
+  //       <Disconnect
+  //         title="Close WebSocket Connection"
+  //         onClick={() => closeWS()}
+  //       >
+  //         Disconnect
+  //       </Disconnect>
+  //     );
+  //   } else {
+  //     return (
+  //       <Disconnect title="Open WebSocket Connection" onClick={() => openWS()}>
+  //         Connect
+  //       </Disconnect>
+  //     );
+  //   }
+  // };
+
   return (
     <Wrapper>
       <Headline children={"CrypTick"} />
@@ -87,7 +135,8 @@ const Header = props => {
           <DateTime>{date.toLocaleTimeString("en-us", timeOptions)}</DateTime>
         </DTContainer>
         <StatusContainer>
-          <Status title="Websocket Connection Status">Connected</Status>
+          {wsStatus(wsReadyState)}
+          {/* {connectDisconnectBtn(wsReadyState)} */}
           <Disconnect
             title="Close WebSocket Connection"
             onClick={() => closeWS()}
