@@ -59,7 +59,6 @@ class MainBar extends Component {
 
   // ==== Opening Connection to WS Server === //
   openWS = () => {
-    socket;
     socket.onopen = () => {
       socket.send(JSON.stringify("Client Connected"));
       this.setState({
