@@ -43,21 +43,44 @@ class MainBar extends Component {
     ethWsData: null,
     ltcWsData: null,
     currentTickerFocus: "BTC-USD",
-    dropdownOpen: false
-    // currentTicker: 0,
-    // wsReadyState: 0
+    dropdownOpen: false,
+    isConnecting: true,
+    wsConnected: false,
+    wsReadyState: 0
   };
 
   componentDidMount() {
-    socket.onopen = () => {
-      socket.send(JSON.stringify("Client Connected"));
-    };
-    this.wsSetup();
+    this.openWS();
   }
 
-  componentWillUnmount() {
+  // componentWillUnmount() {
+  //   this.closeWS();
+  // }
+
+  // ==== Opening Connection to WS Server === //
+  openWS = () => {
+    socket;
+    socket.onopen = () => {
+      socket.send(JSON.stringify("Client Connected"));
+      this.setState({
+        wsReadyState: socket.readyState,
+        isConnecting: true,
+        wsConnected: false
+      });
+    };
+    this.wsSetup();
+  };
+
+  // === WS Disconnect === //
+  closeWS = () => {
     socket.close();
-  }
+    this.setState({
+      wsReadyState: socket.readyState,
+      isConnecting: false,
+      wsConnected: false
+    });
+    console.log(socket.readyState);
+  };
 
   wsSetup = () => {
     socket.onmessage = msg => {
@@ -83,12 +106,12 @@ class MainBar extends Component {
     socket.onerror = err => {
       console.log("Error: ", err);
       // console.log(socket.readyState);
-      // this.setState({ wsReadyState: socket.readyState });
+      this.setState({ wsReadyState: socket.readyState });
     };
 
     socket.onclose = msg => {
-      console.log(msg);
-      // this.setState({ wsReadyState: socket.readyState });
+      console.log("Socket Closed", msg.type, msg);
+      this.setState({ wsReadyState: socket.readyState });
     };
 
     window.addEventListener("beforeunload", () => {
@@ -96,6 +119,7 @@ class MainBar extends Component {
     });
   };
 
+  // === Dropdown Click Handler === //
   handleClick = (e, id) => {
     // console.log(e, id);
     if (this.state.dropdownOpen && id !== this.state.currentTickerFocus) {
@@ -112,25 +136,54 @@ class MainBar extends Component {
     }));
   };
 
-  //For Header Disconnect
-  closeWS = () => {
-    socket.close();
+  // connectionCheck = () => {
+  //   const {
+  //     btcWsData,
+  //     ethWsData,
+  //     ltcWsData,
+  //     isConnecting,
+  //     wsConnected
+  //   } = this.state;
+
+  //   if (!btcWsData || !ethWsData || !ltcWsData) {
+  //     return this.setState({
+  //       isConnecting: true,
+  //       wsConnected: false
+  //     });
+  //   } else if (btcWsData && ethWsData && ltcWsData) {
+  //     return this.setState({
+  //       isConnecting: false,
+  //       wsConnected: true
+  //     });
+  //   } else {
+  //     return this.setState({
+  //       isConnecting: false,
+  //       wsConnected: false
+  //     });
+  //   }
+  // };
+
+  // === Provides data to Accordion === //
+  currentWSFeed = state => {
+    if (state === "BTC-USD") {
+      return this.state.btcWsData;
+    } else if (state === "ETH-USD") {
+      return this.state.ethWsData;
+    } else {
+      return this.state.ltcWsData;
+    }
   };
 
   render() {
-    const currentWSData = state => {
-      if (state === "BTC-USD") {
-        return this.state.btcWsData;
-      } else if (state === "ETH-USD") {
-        return this.state.ethWsData;
-      } else {
-        return this.state.ltcWsData;
-      }
-    };
+    console.log(socket.readyState);
     return (
       <MainBarWrapper>
         <Wrapper>
-          <Header closeWS={this.closeWS} />
+          <Header
+            wsReadyState={this.state.wsReadyState}
+            openWS={this.openWS}
+            closeWS={this.closeWS}
+          />
           <QuoteDisplay
             dropdownOpen={this.handleClick}
             currentTicker={this.state.currentTicker}
@@ -141,7 +194,7 @@ class MainBar extends Component {
         </Wrapper>
         <Accordion
           display={this.state.dropdownOpen}
-          data={currentWSData(this.state.currentTickerFocus)}
+          data={this.currentWSFeed(this.state.currentTickerFocus)}
           currentTicker={this.state.currentTickerFocus}
         />
       </MainBarWrapper>
