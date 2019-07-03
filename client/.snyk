@@ -1,8 +1,67 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.3
+version: v1.13.5
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   SNYK-JS-AXIOS-174505:
     - axios:
         patched: '2019-05-05T22:26:31.958Z'
+  SNYK-JS-LODASH-450202:
+    - react-scripts > babel-preset-react-app > @babel/plugin-transform-classes > @babel/helper-define-map > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > fork-ts-checker-webpack-plugin-alt > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > @babel/core > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > html-webpack-plugin > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > babel-preset-react-app > @babel/core > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > react-dev-utils > inquirer > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > eslint > inquirer > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > @babel/core > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > babel-eslint > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - node-sass-chokidar > node-sass > gaze > globule > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > babel-preset-react-app > @babel/core > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > @babel/core > @babel/template > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > babel-eslint > @babel/traverse > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > @svgr/webpack > @babel/preset-env > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > eslint-plugin-flowtype > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > jest > jest-cli > istanbul-api > async > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > babel-eslint > @babel/traverse > @babel/generator > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > @svgr/webpack > @babel/preset-env > @babel/plugin-transform-classes > @babel/helper-optimise-call-expression > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > babel-preset-react-app > @babel/plugin-transform-classes > @babel/helper-replace-supers > @babel/helper-optimise-call-expression > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > babel-eslint > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > @svgr/webpack > @babel/core > @babel/helpers > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > babel-preset-react-app > @babel/preset-env > @babel/plugin-proposal-async-generator-functions > @babel/helper-remap-async-to-generator > @babel/template > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > jest > jest-cli > istanbul-api > istanbul-reports > handlebars > async > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > babel-preset-react-app > @babel/plugin-proposal-decorators > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > @svgr/webpack > @babel/preset-env > @babel/plugin-proposal-async-generator-functions > @babel/helper-remap-async-to-generator > @babel/traverse > @babel/generator > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > babel-preset-react-app > @babel/preset-env > @babel/plugin-transform-object-super > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > @svgr/webpack > @babel/preset-env > @babel/plugin-transform-classes > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > @svgr/webpack > @babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
+    - react-scripts > babel-preset-react-app > @babel/preset-env > @babel/plugin-proposal-async-generator-functions > @babel/helper-remap-async-to-generator > @babel/helper-wrap-function > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
+        patched: '2019-07-03T22:27:49.010Z'
