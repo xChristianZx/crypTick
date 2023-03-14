@@ -8,12 +8,13 @@ const server = http.createServer(app);
 const wsServer = new WebSocket.Server({ server });
 
 // Connection to GDAX API
-const GDAX_ENDPOINT = "wss://ws-feed.gdax.com";
+const GDAX_ENDPOINT = "wss://ws-feed.exchange.coinbase.com";
+
 const wsGDAX = new WebSocket(GDAX_ENDPOINT);
 const heartbeat = {
   type: "subscribe",
   product_ids: ["BTC-USD", "ETH-USD", "LTC-USD"],
-  channels: ["heartbeat", "ticker"]
+  channels: ["heartbeat", "ticker"],
 };
 
 //Broadcast Function
@@ -30,35 +31,35 @@ wsGDAX.onopen = () => {
   console.log("Connecting with GDAX API");
 };
 
-wsGDAX.onmessage = msg => {
+wsGDAX.onmessage = (msg) => {
   wsServer.broadcast(msg.data);
 };
 
-wsGDAX.onerror = err => {
+wsGDAX.onerror = (err) => {
   console.log(err.message);
 };
 
-wsGDAX.onclose = msg => {
+wsGDAX.onclose = (msg) => {
   console.log(msg);
 };
 
 // wsServer to Client Connection
-wsServer.on("connection", ws => {
+wsServer.on("connection", (ws) => {
   ws.onopen = () => {
     ws.send(
       JSON.stringify({
         type: "message",
-        data: "Hello client"
+        data: "Hello client",
       })
     );
   };
-  ws.onmessage = msg => {
+  ws.onmessage = (msg) => {
     console.log("Client message:", msg.data);
   };
-  ws.onerror = err => {
+  ws.onerror = (err) => {
     console.log("Client Error:", err.message);
   };
-  ws.onclose = msg => {
+  ws.onclose = (msg) => {
     console.log("Client Connection Closed:", msg.code);
   };
 });
@@ -71,7 +72,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 
 server.listen(PORT, () => {
   console.log(`Now serving on ${PORT}`);
